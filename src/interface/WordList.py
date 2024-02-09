@@ -19,6 +19,8 @@ class WordList(wid.QListWidget):
         self.controller.onWordClicked(item.text())
 
     def populate(self, words: list[str]) -> None:
+        for i in range(self.count()):
+            self.item(i).setFont(rsc.Fonts.BASE) # type: ignore
         self.addItems(words)
 
     def empty(self) -> None:
