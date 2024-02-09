@@ -1,6 +1,9 @@
 import random
 import exrex
 
+import logging
+LOGGER = logging.getLogger(__name__)
+
 from model.CharSet import CharSet
 
 class Generator:
@@ -26,4 +29,5 @@ class Generator:
         return exrex.getone(formattedPattern, limit = maxLength)
     
     def generateMany(self, pattern: str, maxLength: int, count: int) -> set[str]:
+        LOGGER.debug(f"Generating {count} words with pattern '{pattern}'")
         return {self.generate(pattern, maxLength) for _ in range(count)}
