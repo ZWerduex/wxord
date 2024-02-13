@@ -43,7 +43,7 @@ class MainController:
                 weights.append(value)
             tmp.append(m.CharSet(chars, weights))
         generator = m.Generator(tmp)
-        words = generator.generateMany(pattern, 20, 10)
+        words = {w.capitalize() for w in generator.generateMany(pattern, 20, 20)}
         self.window.wordList.empty()
         self.window.wordList.populate(words)
 

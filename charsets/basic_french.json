@@ -1,6 +1,6 @@
 {
     "name": "Français",
-    "desc": "Caractères utilisés en français\nVersion WXord",
+    "desc": "Characters used by French, weights follows the frequency of use in the language.",
     "suggested": ["210(nn|ll)2"],
     "charsets" : [
         {
