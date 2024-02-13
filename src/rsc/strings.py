@@ -10,6 +10,7 @@ class Paths:
 
     ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     LANG_DIR = os.path.join(ROOT, 'lang')
+    CHARSETS_DIR = os.path.join(ROOT, 'charsets')
 
     LOG_FILE = os.path.join(ROOT, Strings.APPLICATION_NAME.lower() + '.log')
 
