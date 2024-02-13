@@ -16,7 +16,6 @@ class Singleton(object):
 
 class Translator(Singleton):
     def __init__(self):
-        self.ext = '.json'
         self.path = rsc.Paths.LANG_DIR
         self.lang = 'fr'
         self.data = {}
@@ -40,11 +39,12 @@ class Translator(Singleton):
         self.lang = lang
 
     def load(self):
+        ext = 'json'
         # get all json files in lang directory
-        files = glob.glob(os.path.join(self.path, '*' + self.ext))
+        files = glob.glob(os.path.join(self.path, f'*.{ext}'))
         for file in files:
             # get lang from file name
-            lang = os.path.basename(file).replace(self.ext, '')
+            lang = os.path.basename(file).replace(f'.{ext}', '')
             # open file
             with open(file, 'r', encoding='utf-8') as f:
                 # load json data

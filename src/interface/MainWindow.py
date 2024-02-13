@@ -14,6 +14,8 @@ class MainWindow(wid.QMainWindow):
 
         self.initWindow(minWidth, minHeight)
         self.buildWidgets()
+
+    # WINDOW BAKING
     
     def initWindow(self, minWidth: int, minHeight: int):
         LOGGER.debug(f'Initializing {minWidth}x{minHeight} window')
@@ -27,12 +29,27 @@ class MainWindow(wid.QMainWindow):
         self.move(qr.topLeft())
 
     def buildWidgets(self):
-        
-        words = i.WordList(self.controller)
-        words.populate(['word', 'another word', 'chtulhu', 'chicken', 'object'])
 
-        hbox = wid.QHBoxLayout()
-        hbox.addWidget(words)
+        self.wordList = i.WordList(self.controller)
+        self.wordList.onWordClicked.connect(self.setPattern)
+        self.patternField = wid.QLineEdit()
+        self.generateButton = wid.QPushButton('Generate')
+        self.generateButton.clicked.connect(lambda : self.controller.onGenerate(self.pattern))
+
+        vbox = wid.QVBoxLayout()
+        vbox.addWidget(self.wordList)
+        vbox.addWidget(self.patternField)
+        vbox.addWidget(self.generateButton)
+
         container = wid.QWidget()
-        container.setLayout(hbox)
+        container.setLayout(vbox)
         self.setCentralWidget(container)
+
+    # DATA FIELDS
+    
+    @property
+    def pattern(self) -> str:
+        return self.patternField.text()
+    
+    def setPattern(self, pattern: str) -> None:
+        self.patternField.setText(pattern)
