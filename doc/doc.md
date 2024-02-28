@@ -61,7 +61,7 @@ Characters are anything that are not digits nor reserved symbols. They are used 
 
 #### Reserved symbols
 
-Reserved symbols are used in the pattern to specify a generatio behavior. Those symbols are :
+Reserved symbols are used in the pattern to specify a generation behavior. Those symbols are :
 
 - Quantifiers
   - `?` : The token before the `?` is optional. It can be present or not in the generated word
@@ -76,9 +76,9 @@ Reserved symbols are used in the pattern to specify a generatio behavior. Those 
 
 Although not being currently used, the application plans to support multiple languages. The language files are located in the `lang` folder and are JSON files.
 
-Each string is identified by a unique key and is used to display the application in the selected language. To be able to use a new language, you will have to create a new JSON file in the `lang` folder and fill it with the translations.
+Each string is identified by a unique key and is used to display the application in the selected language. To be able to use a new language, you will have to create a new JSON file in the `lang` folder and fill it with the translations for each required key.
 
-Any string that is not found in the language file 
+Any string with a given key that is not found in the language file is evaluated to the key itself. This is useful to identify missing translations in the language file.
 
 ### Current keys supported
 
