@@ -39,15 +39,13 @@ The `charsets` field is an array of objects, each object being a set of key-valu
 
 ### Pattern
 
-The pattern is a string that contains characters, digits and reserved symbols. Any character that is not a digit are used as is, while the digits are replaced by a character from the corresponding charset.
+The pattern is a string that contains characters, digits and reserved symbols. Any character that is not a digit is used as is, while digits are replaced by a character from the corresponding charset.
 
 #### Digits
 
-A character weight determines the probability of a character to be chosen among the charset specified by a digit. `1` implies that the first charset will be used and the same logic goes for `2` and `3`.
+A digit shows the charset to be used to replace it. `1` implies that the first charset will be used and the same logic goes for `2` and `3`. The special digit `0` means that the charset choice is uniformly random. A zero will be evaluated to a digit from `1` to `3` and the character will be then chosen from the corresponding charset as described below.
 
-The special digit `0` means that the charset choice is uniformly random. A zero will be evaluated to a digit from `1` to `3` and the character will be then chosen from the corresponding charset as described above.
-
-The weight of a character is used to determine its probability to be chosen. All the weigths are summed up, and a given character has a probability of `weight / sum_of_weights` to be chosen. For example, if using the charset above `default_english.json`, the digit `1` will be replaced by :
+The weight of a character is used to determine its probability to be chosen. All the weigths in a charset are summed up, and a given character has a probability of `weight / sum_of_weights` to be chosen. For example, if using the charset file above called `default_english.json`, the digit `1` will be replaced by :
 - `a` 12 times out of 32
 - `e` 16 times out of 32
 - `i` 4 times out of 32
