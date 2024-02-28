@@ -26,7 +26,7 @@ Actually, you can change the charset used by tweaking directly the JSON file in 
 
 ## Installation
 
-No release has been made yet, so you will have to run the application from sources. You will need [Python 3.12.0](https://www.python.org/downloads/release/python-3120/) before cloning the repository.
+No release has been made yet, so you will have to run the application from sources. You will need [Python 3.12.0](https://www.python.org/downloads/release/python-3120/) to launch Wxord.
 
 Creating a virtual environment is recommended to install requirements.
 
