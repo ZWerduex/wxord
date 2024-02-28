@@ -10,7 +10,7 @@ import os
 import logging
 LOGGER = logging.getLogger(__name__)
 
-import model as m
+import grammar as m
 import rsc
 
 class MainController:
@@ -42,10 +42,13 @@ class MainController:
                 chars.append(key)
                 weights.append(value)
             tmp.append(m.CharSet(chars, weights))
-        generator = m.Generator(tmp)
-        words = {w.capitalize() for w in generator.generateMany(pattern, 20, 20)}
+        
+        generated = m.Generator(tmp).generateMany(pattern, 20, 20)
         self.window.wordList.empty()
-        self.window.wordList.populate(words)
+
+        if len(generated) > 0:
+            words = {w[0].upper() + w[1:] for w in generated if len(w) > 0}
+            self.window.wordList.populate(words)
 
 
     

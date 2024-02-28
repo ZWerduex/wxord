@@ -16,7 +16,7 @@ import PyQt6.QtWidgets as wid
 app = wid.QApplication(sys.argv)
 
 import interface as i
-import model as m
+import grammar as m
 import rsc
 
 # ----------------------------------------------------
