@@ -43,7 +43,7 @@ class MainController:
                 weights.append(value)
             tmp.append(m.CharSet(chars, weights))
         
-        generated = m.Generator(tmp).generateMany(pattern, 20, 10)
+        generated = m.Generator(tmp).generateMany(pattern, 20, 100)
         self.window.wordList.empty()
 
         if len(generated) > 0:

@@ -18,11 +18,16 @@ class WordListItem(wid.QLabel):
         self.clicked.emit(self)
 
 
-class WordList(wid.QWidget):
+class WordList(wid.QScrollArea):
     wordClicked = core.pyqtSignal(object)
 
     def __init__(self, controller: c.MainController) -> None:
         super().__init__()
+        self.setWidgetResizable(True)
+        self.setVerticalScrollBarPolicy(core.Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+        self.setHorizontalScrollBarPolicy(core.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setFrameStyle(wid.QFrame.Shape.NoFrame)
+
         self.controller = controller
         self.items = set()
 
@@ -31,7 +36,10 @@ class WordList(wid.QWidget):
         vbox = wid.QVBoxLayout()
         vbox.addLayout(self.grid)
         vbox.addStretch(1)
-        self.setLayout(vbox)
+
+        container = wid.QWidget()
+        container.setLayout(vbox)
+        self.setWidget(container)
 
     def highlightWord(self, item: WordListItem) -> None:
         for i in self.items:
