@@ -30,7 +30,7 @@ class MainWindow(wid.QMainWindow):
 
     def buildWidgets(self):
         self.wordList = i.WordList(self.controller)
-        self.wordList.onWordClicked.connect(self.setPattern)
+        self.wordList.wordClicked.connect(self.setPattern)
         
         callback = lambda : self.controller.onGenerate(self.pattern)
         self.patternInput = i.PatternInput(callback)
@@ -47,6 +47,7 @@ class MainWindow(wid.QMainWindow):
         
     def reloadTranslations(self) -> None:
         self.patternInput.reloadTranslation()
+        self.generateButton.reloadTranslation()
 
     # DATA FIELDS
     

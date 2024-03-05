@@ -14,7 +14,13 @@ class Paths:
 
     LOG_FILE = os.path.join(ROOT, Strings.APPLICATION_NAME.lower() + '.log')
 
+class Colors:
+
+    LIST_INDEX = '#666666'
+
 class Fonts:
+
+    LIST_INDEX = gui.QFont('Arial', 8, gui.QFont.Weight.Light)
 
     BASE = gui.QFont('Arial', 12)
     BOLD = gui.QFont('Arial', 12, gui.QFont.Weight.Bold)
