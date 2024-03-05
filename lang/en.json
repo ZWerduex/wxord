@@ -1,3 +1,7 @@
 {
-    "language_name": "English"
+    "language_name": "English",
+
+    "PatternInput_placeholder": "Enter a pattern",
+
+    "GenerateButton_text": "Generate"
 }

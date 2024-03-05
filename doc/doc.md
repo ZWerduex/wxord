@@ -4,7 +4,7 @@
 
 ### Charset files
 
-A charset file is a JSON file that contains a few info about itself, along with the characters and their weights. Located in the `charsets` folder, you can create your own charset file or modify an existing one to change the character set used by the application.
+A charset is a representation of an alphabet and how often each character is used. It is a JSON file that contains a few info about itself, along with the characters and their weights. It is located in the `charsets` folder and you can create your own charset file or modify an existing one to change the character set used by the application.
 
 Currently, the application uses a single charset file, which has been defined statically. However, you can change the charset used by tweaking directly the `basic_french` JSON file in the `charsets` folder.
 
@@ -74,7 +74,7 @@ Reserved symbols are used in the pattern to specify a generation behavior. Those
 
 ## Language files
 
-Although not being currently used, the application plans to support multiple languages. The language files are located in the `lang` folder and are JSON files.
+Although not able to be changed while the application is running, this one plans to support multiple languages. The language files are located in the `lang` folder and are JSON files.
 
 Each string is identified by a unique key and is used to display the application in the selected language. To be able to use a new language, you will have to create a new JSON file in the `lang` folder and fill it with the translations for each required key.
 
@@ -83,3 +83,5 @@ Any string with a given key that is not found in the language file is evaluated 
 ### Current keys supported
 
 - `language_name` : The name of the language in its own language
+- `PatternInput_placeholder` : The placeholder of the input used to enter the pattern
+- `GenerateButton_text` : The text of the button used to generate a word

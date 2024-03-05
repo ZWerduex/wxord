@@ -28,4 +28,6 @@ class Generator:
     
     def generateMany(self, pattern: str, maxLength: int, count: int) -> set[str]:
         LOGGER.debug(f"Generating {count} words with pattern '{pattern}'")
+        if pattern == '':
+            return set()
         return {self.generate(pattern, maxLength) for _ in range(count)}

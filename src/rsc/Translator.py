@@ -7,48 +7,43 @@ LOGGER = logging.getLogger(__name__)
 
 import rsc
 
-class Singleton(object):
-    _instances = {}
-    def __new__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super(Singleton, cls).__new__(cls, *args, **kwargs)
-        return cls._instances[cls]
+class Translator:
 
-class Translator(Singleton):
-    def __init__(self):
-        self.path = rsc.Paths.LANG_DIR
-        self.lang = 'fr'
-        self.data = {}
-        self.load()
+    PATH = rsc.Paths.LANG_DIR
+    LANG = 'fr'
+    DATA = {}
 
-    def tr(self, key: str) -> str:
-        if key not in self.data[self.lang].keys():
-            LOGGER.warning(f"Key '{key}' not found in language '{self.lang}'")
-        return self.data[self.lang].get(key, key)
+    @classmethod
+    def tr(cls, key: str) -> str:
+        if key not in cls.DATA[cls.LANG].keys():
+            LOGGER.warning(f"Key '{key}' not found in language '{cls.LANG}'")
+        return cls.DATA[cls.LANG].get(key, key)
     
-    @property
-    def langs(self) -> dict[str, str]:
+    @classmethod
+    def langs(cls) -> dict[str, str]:
         langs = dict()
-        for lang in self.data.keys():
-            langs[lang] = self.data[lang]['language_name']
+        for lang in cls.DATA.keys():
+            langs[lang] = cls.DATA[lang]['language_name']
         return langs
     
-    def setLang(self, lang: str):
-        if lang not in self.langs.keys():
+    @classmethod
+    def setLang(cls, lang: str):
+        if lang not in cls.langs().keys():
             raise ValueError(f"Language '{lang}' is not available")
-        self.lang = lang
+        cls.LANG = lang
 
-    def load(self):
+    @classmethod
+    def load(cls):
         ext = 'json'
         # get all json files in lang directory
-        files = glob.glob(os.path.join(self.path, f'*.{ext}'))
+        files = glob.glob(os.path.join(cls.PATH, f'*.{ext}'))
         for file in files:
             # get lang from file name
             lang = os.path.basename(file).replace(f'.{ext}', '')
             # open file
             with open(file, 'r', encoding='utf-8') as f:
                 # load json data
-                self.data[lang] = json.load(f)
-        LOGGER.debug(f'Loaded {len(self.data)} languages')
+                cls.DATA[lang] = json.load(f)
+        LOGGER.debug(f'Loaded {len(cls.DATA)} languages')
         
     

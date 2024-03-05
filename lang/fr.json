@@ -1,3 +1,7 @@
 {
-    "language_name": "Français"
+    "language_name": "Français",
+
+    "PatternInput_placeholder": "Entrez un motif",
+
+    "GenerateButton_text": "Générer"
 }

@@ -29,27 +29,30 @@ class MainWindow(wid.QMainWindow):
         self.move(qr.topLeft())
 
     def buildWidgets(self):
-
         self.wordList = i.WordList(self.controller)
         self.wordList.onWordClicked.connect(self.setPattern)
-        self.patternField = wid.QLineEdit()
-        self.generateButton = wid.QPushButton('Generate')
-        self.generateButton.clicked.connect(lambda : self.controller.onGenerate(self.pattern))
+        
+        callback = lambda : self.controller.onGenerate(self.pattern)
+        self.patternInput = i.PatternInput(callback)
+        self.generateButton = i.GenerateButton(callback)
 
         vbox = wid.QVBoxLayout()
         vbox.addWidget(self.wordList)
-        vbox.addWidget(self.patternField)
+        vbox.addWidget(self.patternInput)
         vbox.addWidget(self.generateButton)
 
         container = wid.QWidget()
         container.setLayout(vbox)
         self.setCentralWidget(container)
+        
+    def reloadTranslations(self) -> None:
+        self.patternInput.reloadTranslation()
 
     # DATA FIELDS
     
     @property
     def pattern(self) -> str:
-        return self.patternField.text()
+        return self.patternInput.text()
     
     def setPattern(self, pattern: str) -> None:
-        self.patternField.setText(pattern)
+        self.patternInput.setText(pattern)

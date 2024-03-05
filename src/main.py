@@ -48,7 +48,10 @@ def excepthook(
 # ----------------------------------------------------
 
 def main():
-    window = i.MainWindow(800, 600)
+    # Load translations
+    rsc.Translator.load()
+
+    window = i.MainWindow(1000, 600)
     window.show()
     sys.exit(app.exec())
     

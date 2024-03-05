@@ -4,7 +4,7 @@ import os
 
 class Strings:
 
-    APPLICATION_NAME = 'WXord'
+    APPLICATION_NAME = 'Wxord'
 
 class Paths:
 
