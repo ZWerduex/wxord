@@ -16,7 +16,12 @@ class Paths:
 
 class Colors:
 
-    LIST_INDEX = '#666666'
+    WHITE = '#ffffff'
+    LIGHT_GRAY = '#cccccc'
+
+    LIST_ITEM_BACKGROUND_EVEN = '#113799'
+    LIST_ITEM_BACKGROUND_ODD = '#152D6C'
+    LIST_ITEM_BACKGROUND_HIGHLIGHT = '#6c13e0'
 
 class Fonts:
 
