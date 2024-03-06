@@ -11,12 +11,8 @@ import rsc
 class WordListItem(wid.QLabel):
     clicked = core.pyqtSignal(object)
 
-    def __init__(self, word: str, isEven: bool) -> None:
+    def __init__(self, word: str) -> None:
         super().__init__(word)
-        if isEven:
-            self.background = rsc.Colors.LIST_ITEM_BACKGROUND_EVEN
-        else:
-            self.background = rsc.Colors.LIST_ITEM_BACKGROUND_ODD
         self.unselect()
 
     def select(self) -> None:
@@ -25,7 +21,7 @@ class WordListItem(wid.QLabel):
 
     def unselect(self) -> None:
         self.setFont(rsc.Fonts.BASE)
-        self.setStyleSheet(f'color: {rsc.Colors.WHITE}; background-color: {self.background};')
+        self.setStyleSheet(f'color: {rsc.Colors.WHITE}; background-color: transparent;')
 
     def mouseReleaseEvent(self, event: core.QEvent) -> None:
         self.clicked.emit(self)
@@ -97,12 +93,11 @@ class WordList(wid.QScrollArea):
             
             index = wid.QLabel(str(nb))
             index.setFont(rsc.Fonts.LIST_INDEX)
-            style = 'background-color: ' + (rsc.Colors.LIST_ITEM_BACKGROUND_EVEN if nb % 2 == 0 else rsc.Colors.LIST_ITEM_BACKGROUND_ODD) + ';'
-            index.setStyleSheet(f'color: {rsc.Colors.LIGHT_GRAY};' + style)
+            index.setStyleSheet(f'color: {rsc.Colors.LIGHT_GRAY}; background-color: transparent;')
             index.setContentsMargins(10, 10, 10, 10)
             self.grid.addWidget(index, nb - 1, 0)
 
-            item = WordListItem(word, nb % 2 == 0)
+            item = WordListItem(word)
             self.items.add(item)
 
             item.clicked.connect(self.highlightWord)

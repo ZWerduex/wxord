@@ -85,3 +85,7 @@ Any string with a given key that is not found in the language file is evaluated 
 - `language_name` : The name of the language in its own language
 - `PatternInput_placeholder` : The placeholder of the input used to enter the pattern
 - `GenerateButton_text` : The text of the button used to generate a word
+
+## Ressources
+
+- [League Spartan font](https://www.theleagueofmoveabletype.com/league-spartan) : Used for the application logo

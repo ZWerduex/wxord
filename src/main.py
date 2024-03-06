@@ -16,7 +16,6 @@ import PyQt6.QtWidgets as wid
 app = wid.QApplication(sys.argv)
 
 import interface as i
-import grammar as m
 import rsc
 
 # ----------------------------------------------------
@@ -48,7 +47,7 @@ def excepthook(
 # ----------------------------------------------------
 
 def main():
-    # Load translations
+    # Configuration
     rsc.Translator.load()
 
     window = i.MainWindow(1000, 600)

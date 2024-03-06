@@ -10,7 +10,7 @@ import os
 import logging
 LOGGER = logging.getLogger(__name__)
 
-import grammar as m
+import grammar as g
 import rsc
 
 class MainController:
@@ -41,9 +41,9 @@ class MainController:
             for key, value in d.items():
                 chars.append(key)
                 weights.append(value)
-            tmp.append(m.CharSet(chars, weights))
+            tmp.append(g.CharSet(chars, weights))
         
-        generated = m.Generator(tmp).generateMany(pattern, 20, 100)
+        generated = g.Generator(tmp).generateMany(pattern, 20, 100)
         self.window.wordList.empty()
 
         if len(generated) > 0:
