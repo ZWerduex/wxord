@@ -82,7 +82,7 @@ class WordList(wid.QScrollArea):
         item.select()
         self.wordClicked.emit(item.text())
 
-    def populate(self, words: set[str]) -> None:
+    def populate(self, words: list[str]) -> None:
         # Remove all widgets from the layout
         for i in reversed(range(self.grid.count())):
             self.grid.itemAt(i).widget().setParent(None) # type: ignore
@@ -106,4 +106,4 @@ class WordList(wid.QScrollArea):
             nb += 1
 
     def empty(self) -> None:
-        self.populate(set())
+        self.populate(list())

@@ -43,11 +43,11 @@ class MainController:
                 weights.append(value)
             tmp.append(g.CharSet(chars, weights))
         
-        generated = g.Generator(tmp).generateMany(pattern, 20, 100)
+        generated = sorted(g.Generator(tmp).generateMany(pattern, 20, 100))
         self.window.wordList.empty()
 
         if len(generated) > 0:
-            words = {w[0].upper() + w[1:] for w in generated if len(w) > 0}
+            words = [w[0].upper() + w[1:] for w in generated if len(w) > 0]
             self.window.wordList.populate(words)
 
 
