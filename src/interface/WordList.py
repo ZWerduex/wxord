@@ -1,5 +1,4 @@
 import PyQt6.QtCore as core
-import PyQt6.QtGui as gui
 import PyQt6.QtWidgets as wid
 
 import logging
@@ -13,13 +12,29 @@ class WordListItem(wid.QLabel):
 
     def __init__(self, word: str) -> None:
         super().__init__(word)
+        self.selected = False
         self.unselect()
 
+    def enterEvent(self, event: core.QEvent) -> None:
+        if not self.selected:
+            self.hover()
+
+    def leaveEvent(self, event: core.QEvent) -> None:
+        if not self.selected:
+            self.unselect()
+    
+    def hover(self) -> None:
+        if not self.selected:
+            self.setFont(rsc.Fonts.BASE)
+            self.setStyleSheet(f'color: {rsc.Colors.WHITE}; background-color: {rsc.Colors.LIST_ITEM_BACKGROUND_HOVER};')
+
     def select(self) -> None:
+        self.selected = True
         self.setFont(rsc.Fonts.BOLD)
         self.setStyleSheet(f'color: {rsc.Colors.WHITE}; background-color: {rsc.Colors.LIST_ITEM_BACKGROUND_HIGHLIGHT};')
 
     def unselect(self) -> None:
+        self.selected = False
         self.setFont(rsc.Fonts.BASE)
         self.setStyleSheet(f'color: {rsc.Colors.WHITE}; background-color: transparent;')
 
