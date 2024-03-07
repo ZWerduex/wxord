@@ -12,7 +12,6 @@ class WordListItem(wid.QLabel):
 
     def __init__(self, word: str) -> None:
         super().__init__(word)
-        self.selected = False
         self.unselect()
 
     def enterEvent(self, event: core.QEvent) -> None:

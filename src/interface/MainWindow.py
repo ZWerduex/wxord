@@ -16,6 +16,7 @@ class MainWindow(wid.QMainWindow):
         super().__init__()
         self.controller = c.MainController(self)
 
+        # Load fonts
         for file in glob.glob(os.path.join(rsc.Paths.FONTS_DIR, '*.ttf')):
             gui.QFontDatabase.addApplicationFont(file)
 
@@ -37,6 +38,7 @@ class MainWindow(wid.QMainWindow):
 
     def buildWidgets(self):
         self.header = i.Header()
+        self.footer = i.Footer()
 
         self.wordList = i.WordList(self.controller)
         self.wordList.wordClicked.connect(self.setPattern)
@@ -61,6 +63,7 @@ class MainWindow(wid.QMainWindow):
         vbox.setContentsMargins(0, 0, 0, 0)
         vbox.addWidget(self.header)
         vbox.addLayout(main, 1)
+        vbox.addWidget(self.footer)
 
         container = wid.QWidget()
         container.setLayout(vbox)
@@ -72,6 +75,7 @@ class MainWindow(wid.QMainWindow):
         self.controller.onGenerate(self.pattern)
         
     def reloadTranslations(self) -> None:
+        LOGGER.debug('Reloading translations')
         self.header.reloadTranslation()
         self.patternInput.reloadTranslation()
         self.generateButton.reloadTranslation()
