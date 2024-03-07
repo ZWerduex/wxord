@@ -5,5 +5,8 @@
 
     "PatternInput_placeholder": "Entrez un motif",
 
-    "GenerateButton_text": "Générer"
+    "GenerateButton_text": "Générer",
+
+    "Status_Title": "Statut",
+    "Status_GeneratedWords": "{nb} mot.s généré.s"
 }

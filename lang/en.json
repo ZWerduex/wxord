@@ -5,5 +5,8 @@
 
     "PatternInput_placeholder": "Enter a pattern",
 
-    "GenerateButton_text": "Generate"
+    "GenerateButton_text": "Generate",
+
+    "Status_Title": "Status",
+    "Status_GeneratedWords": "Generated {nb} words"
 }

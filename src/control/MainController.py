@@ -49,6 +49,9 @@ class MainController:
         if len(generated) > 0:
             words = [w[0].upper() + w[1:] for w in generated if len(w) > 0]
             self.window.wordList.populate(words)
+            self.window.footer.setStatus(
+                rsc.Translator.tr('Status_GeneratedWords').format(nb = len(words))
+            )
 
 
     
