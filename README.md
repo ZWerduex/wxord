@@ -21,6 +21,10 @@ I have created this application because I'm interested in the concept of creatin
 - Export and import UI language files
 - Make a cool UI
 - Add the possibility to save generated words (like `Séodès` or `Talledra`, I like those words)
+- Export saved words to a file
+- Copy & paste feature for a single word from the list
+- Add an explanation of how it works
+- Add a settings menu to change the language of the application
 
 Actually, you can change the charset used by tweaking directly the JSON file in the `charsets` folder. More information about this in the [documentation](doc/doc.md).
 

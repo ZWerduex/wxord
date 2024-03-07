@@ -89,3 +89,5 @@ Any string with a given key that is not found in the language file is evaluated 
 ## Ressources
 
 - [League Spartan font](https://www.theleagueofmoveabletype.com/league-spartan) : Used for the application logo
+- [WordGen website](https://www.wordgen.eu/#!en/generator/from-letters) : Inspired the application idea
+- [ANTLR4](https://www.antlr.org/) : Used to parse the pattern and generate words
