@@ -84,7 +84,7 @@ class PatternVisitor(ParseTreeVisitor):
         atom = ctx.getText()
         word = ''
         for char in atom:
-            if char.isdigit():
+            if char in '0123456789': # can't use isdigit() because of exponents (unicode i hate you)
                 digit = int(char)
                 if digit == 0 or digit > len(self.charsets):
                     charset = random.choice(self.charsets)
