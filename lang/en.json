@@ -1,6 +1,8 @@
 {
     "language_name": "English",
 
+    "HeaderAuthor_text": "by {author}",
+
     "PatternInput_placeholder": "Enter a pattern",
 
     "GenerateButton_text": "Generate"

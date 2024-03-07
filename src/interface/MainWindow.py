@@ -36,14 +36,13 @@ class MainWindow(wid.QMainWindow):
         self.move(qr.topLeft())
 
     def buildWidgets(self):
-        header = i.Header()
+        self.header = i.Header()
 
         self.wordList = i.WordList(self.controller)
         self.wordList.wordClicked.connect(self.setPattern)
         
-        callback = lambda : self.controller.onGenerate(self.pattern)
-        self.patternInput = i.PatternInput(callback)
-        self.generateButton = i.GenerateButton(callback)
+        self.patternInput = i.PatternInput(self.onGenerate)
+        self.generateButton = i.GenerateButton(self.onGenerate)
 
         leftPanel = wid.QVBoxLayout()
         leftPanel.setSpacing(0)
@@ -60,14 +59,20 @@ class MainWindow(wid.QMainWindow):
         vbox = wid.QVBoxLayout()
         vbox.setSpacing(0)
         vbox.setContentsMargins(0, 0, 0, 0)
-        vbox.addWidget(header)
+        vbox.addWidget(self.header)
         vbox.addLayout(main, 1)
 
         container = wid.QWidget()
         container.setLayout(vbox)
         self.setCentralWidget(container)
+
+    # HANDY METHODS
+        
+    def onGenerate(self) -> None:
+        self.controller.onGenerate(self.pattern)
         
     def reloadTranslations(self) -> None:
+        self.header.reloadTranslation()
         self.patternInput.reloadTranslation()
         self.generateButton.reloadTranslation()
 

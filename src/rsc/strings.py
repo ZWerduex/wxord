@@ -5,6 +5,7 @@ import os
 class Strings:
 
     APPLICATION_NAME = 'Wxord'
+    APPLICATION_AUTHOR = 'Z-WX'
 
 class Paths:
 
@@ -19,6 +20,7 @@ class Colors:
 
     WHITE = '#ffffff'
     LIGHT_GRAY = '#cccccc'
+    GRAY = '#666666'
 
     HEADER_BACKGROUND = '#131D37'
 
@@ -31,6 +33,7 @@ class Colors:
 class Fonts:
 
     TITLE = gui.QFont('League Spartan', 36, gui.QFont.Weight.Normal)
+    AUTHOR = gui.QFont('League Spartan', 12, gui.QFont.Weight.Light)
 
     LIST_INDEX = gui.QFont('Arial', 8, gui.QFont.Weight.Light)
 

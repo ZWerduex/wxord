@@ -1,6 +1,8 @@
 {
     "language_name": "Français",
 
+    "HeaderAuthor_text": "par {author}",
+
     "PatternInput_placeholder": "Entrez un motif",
 
     "GenerateButton_text": "Générer"
