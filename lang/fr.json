@@ -8,5 +8,7 @@
     "GenerateButton_text": "Générer",
 
     "Status_Title": "Statut",
-    "Status_GeneratedWords": "{nb} mot.s généré.s"
+    "Status_GeneratedWord": "{nb} mot généré",
+    "Status_GeneratedWords": "{nb} mots générés",
+    "Status_WordSentToPatternInput": "'{word}' envoyé dans le champ de saisie"
 }

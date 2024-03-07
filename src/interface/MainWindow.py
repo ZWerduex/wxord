@@ -87,4 +87,5 @@ class MainWindow(wid.QMainWindow):
         return self.patternInput.text()
     
     def setPattern(self, pattern: str) -> None:
+        self.footer.setStatus(rsc.Translator.tr('Status_WordSentToPatternInput').format(word = pattern))
         self.patternInput.setText(pattern)
