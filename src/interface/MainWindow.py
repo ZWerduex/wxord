@@ -77,6 +77,7 @@ class MainWindow(wid.QMainWindow):
     def reloadTranslations(self) -> None:
         LOGGER.debug('Reloading translations')
         self.header.reloadTranslation()
+        self.footer.reloadTranslation()
         self.patternInput.reloadTranslation()
         self.generateButton.reloadTranslation()
 
@@ -87,5 +88,6 @@ class MainWindow(wid.QMainWindow):
         return self.patternInput.text()
     
     def setPattern(self, pattern: str) -> None:
+        LOGGER.debug(f"Setting pattern to word '{pattern}'")
         self.footer.setStatus(rsc.Translator.tr('Status_WordSentToPatternInput').format(word = pattern))
         self.patternInput.setText(pattern)

@@ -49,28 +49,27 @@ class WordList(wid.QScrollArea):
         # Widget properties
         self.setWidgetResizable(True)
         self.setVerticalScrollBarPolicy(core.Qt.ScrollBarPolicy.ScrollBarAsNeeded)
-        self.setHorizontalScrollBarPolicy(core.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(core.Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self.setFrameStyle(wid.QFrame.Shape.NoFrame)
         self.setStyleSheet(f'background-color: {rsc.Colors.WORD_LIST_BACKGROUND};')
         # Scrollbar properties
-        scrollbar: wid.QScrollBar = self.verticalScrollBar() # type: ignore
-        scrollbar.setStyleSheet(
-            """
-            QScrollBar:vertical {
+        style = """
+            QScrollBar {
                 background: """ + rsc.Colors.WORD_LIST_SCROLLBAR_BACKGROUND + """;
             }
-            QScrollBar::handle:vertical {
+            QScrollBar::handle {
                 background: """ + rsc.Colors.WORD_LIST_SCROLLBAR_HANDLE + """;
             }
-            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+            QScrollBar::add-line, QScrollBar::sub-line {
                 height: 0px;
                 background: none;
             }
-            QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+            QScrollBar::add-page, QScrollBar::sub-page {
                 background: none;
             }
             """
-        )
+        self.verticalScrollBar().setStyleSheet(style) # type: ignore
+        self.horizontalScrollBar().setStyleSheet(style) # type: ignore
 
         self.controller = controller
         self.items = set()

@@ -4,7 +4,7 @@
 
 Wxord is a pretty basic application that allows you to create words from a pattern along with three (at the moment) weighted sets of characters.
 
-I have created this application because I'm interested in the concept of creating words from a pattern and I wanted to see if I could create a simple application that could do this. I was highly inspired by the [WordGen website](https://www.wordgen.eu/#!en/generator/from-letters) and its idea of using a pattern to structure generated words. While I can add some enhancements of my taste, it is a good way to learn how to use ANTLR4 with Python and how to translate a simple application into multiple languages.
+I have created this application because I'm interested in the concept of creating words from a pattern and I wanted to see if I could create a simple application that could do this. I was highly inspired by the [WordGen website](https://www.wordgen.eu/#!en/generator/from-letters) and its idea of using a pattern to structure generated words. While I can add some enhancements of my taste, it is also a good way to learn how to use ANTLR4 with Python and how to translate a simple application into multiple languages.
 
 ## Features
 
@@ -19,12 +19,12 @@ I have created this application because I'm interested in the concept of creatin
 - Customizable character sets using the UI
 - Export and import sets of characters (yours or shared ones)
 - Export and import UI language files
-- Make a cool UI
-- Add the possibility to save generated words (like `Séodès` or `Talledra`, I like those words)
+- A cool UI
+- Save generated words (like `Séodès` or `Talledra`, I like those words)
 - Export saved words to a file
-- Copy & paste feature for a single word from the list
-- Add an explanation of how it works
-- Add a settings menu to change the language of the application
+- Send to clipboard feature for a single word from the list
+- A sort of "tutorial"
+- Settings menu to change the language of the application
 
 Actually, you can change the charset used by tweaking directly the JSON file in the `charsets` folder. More information about this in the [documentation](doc/doc.md).
 
@@ -54,7 +54,3 @@ See the [documentation](doc/doc.md) for more detailed information about the appl
 ## Issues
 
 If you find any issue, please report it in the [issues tab](https://github.com/ZWerduex/wxord/issues), and include the log file generated at the root of the application.
-
-### Known issues
-
-- Using quantifiers after tokens including digits in pattern such as `(1|2)*` or `(12|3)+` does not produce a truly random sequence of characters. This is due to the fact that digits are replaced by their corresponding character set before the quantifier is applied. `Fixed with the ANTLR4 update in version 0.2.0`
