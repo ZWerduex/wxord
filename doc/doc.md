@@ -8,7 +8,7 @@ A charset is a representation of an alphabet and how often each character is use
 
 Currently, the application uses a single charset file, which has been defined statically. However, you can change the charset used by tweaking directly the `basic_french` JSON file in the `charsets` folder.
 
-Below is an example of a charset file used as a reference in the documentation.
+Below is an example of a charset file, further used as a reference in the documentation.
 
 ```bash
 cat charsets/default_english.json
@@ -80,11 +80,40 @@ Each string is identified by a unique key and is used to display the application
 
 Any string with a given key that is not found in the language file is evaluated to the key itself. This is useful to identify missing translations in the language file.
 
+Some strings take parameters into account. They must include in themselves the name of each parameter surronded by brackets, so they can be formatted later using the `format` method of `str` Python class.
+
+The example below shows a string with a parameter named `nb`.
+```json
+"Status_GeneratedWords": "Generated {nb} words"
+```
+
+In the next subsection, documentation indicates a list of required parameters for a given string if there is any.
+
 ### Current keys supported
 
 - `language_name` : The name of the language in its own language
+
+- `HeaderAuthor_text`: Expression indicating who is the author
+  - `author` : the author of the application (`Z-WX`)
+
 - `PatternInput_placeholder` : The placeholder of the input used to enter the pattern
+
 - `GenerateButton_text` : The text of the button used to generate a word
+
+- `Status` : Used as the title for the status bar in the footer
+
+- `Status_GeneratedWord` : Status message to indicate how much words were generated
+  - `nb` : the amount of generated words (`0` or `
+  1`)
+
+- `Status_GeneratedWords` : Plural form of `Status_GeneratedWord`
+  - `nb` : the amount of generated words (`2` or more)
+
+- `Status_WordSentToPatternInput` : Status message indicating that a word is used as the pattern
+  - `word` : the word used as the new pattern
+
+- `Status_WordSentToClipboard` : Status message indicating that a word has been copied, sent to the clipboard
+  - `word` : the copied word
 
 ## Ressources
 
