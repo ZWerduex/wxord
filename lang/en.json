@@ -10,5 +10,6 @@
     "Status": "Status",
     "Status_GeneratedWord": "Generated {nb} word",
     "Status_GeneratedWords": "Generated {nb} words",
-    "Status_WordSentToPatternInput": "'{word}' sent to pattern input"
+    "Status_WordSentToPatternInput": "'{word}' sent to pattern input",
+    "Status_WordSentToClipboard": "'{word}' copied to clipboard"
 }

@@ -3,6 +3,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     import interface as i
 
+import PyQt6.QtWidgets as wid
+
 import glob
 import json
 import os
@@ -22,17 +24,27 @@ class MainController:
         ext = 'json'
         cs = dict()
         files = glob.glob(os.path.join(rsc.Paths.CHARSETS_DIR, f'*.{ext}'))
-        if len(files) == 0:
-            LOGGER.info('No charsets file found')
         for file in files:
             lang = os.path.basename(file).replace(f'.{ext}', '')
             with open(file, 'r', encoding='utf-8') as f:
                 cs[lang] = json.load(f)
+        if len(files) == 0:
+            LOGGER.info('No charsets file found')
+        else:
+            LOGGER.info(f'{len(files)} charsets file(s) found')
         return cs
     
     # EVENTS
 
-    def onGenerate(self, pattern: str):
+    def onSendToClipboard(self, word: str) -> None:
+        LOGGER.debug(f"Copying '{word}' to clipboard")
+        wid.QApplication.clipboard().setText(word) # type: ignore
+
+        self.window.footer.setStatus(
+            rsc.Translator.tr('Status_WordSentToClipboard').format(word = word)
+        )
+
+    def onGenerate(self, pattern: str) -> None:
         cs = self.charsets['basic_french']['charsets']
         tmp = []
         for d in cs:
@@ -49,10 +61,8 @@ class MainController:
         if len(generated) > 0:
             words = [w[0].upper() + w[1:] for w in generated if len(w) > 0]
             self.window.wordList.populate(words)
+
             key = 'Status_GeneratedWords' if len(words) > 1 else 'Status_GeneratedWord'
             self.window.footer.setStatus(
                 rsc.Translator.tr(key).format(nb = len(words))
             )
-
-
-    

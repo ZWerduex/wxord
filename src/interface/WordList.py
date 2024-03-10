@@ -4,45 +4,14 @@ import PyQt6.QtWidgets as wid
 import logging
 LOGGER = logging.getLogger(__name__)
 
+from interface.WordListItem import WordListItem
 import control as c
 import rsc
-
-class WordListItem(wid.QLabel):
-    clicked = core.pyqtSignal(object)
-
-    def __init__(self, word: str) -> None:
-        super().__init__(word)
-        self.unselect()
-
-    def enterEvent(self, event: core.QEvent) -> None:
-        if not self.selected:
-            self.hover()
-
-    def leaveEvent(self, event: core.QEvent) -> None:
-        if not self.selected:
-            self.unselect()
-    
-    def hover(self) -> None:
-        if not self.selected:
-            self.setFont(rsc.Fonts.BASE)
-            self.setStyleSheet(f'color: {rsc.Colors.WHITE}; background-color: {rsc.Colors.LIST_ITEM_BACKGROUND_HOVER};')
-
-    def select(self) -> None:
-        self.selected = True
-        self.setFont(rsc.Fonts.BOLD)
-        self.setStyleSheet(f'color: {rsc.Colors.WHITE}; background-color: {rsc.Colors.LIST_ITEM_BACKGROUND_HIGHLIGHT};')
-
-    def unselect(self) -> None:
-        self.selected = False
-        self.setFont(rsc.Fonts.BASE)
-        self.setStyleSheet(f'color: {rsc.Colors.WHITE}; background-color: transparent;')
-
-    def mouseReleaseEvent(self, event: core.QEvent) -> None:
-        self.clicked.emit(self)
 
 
 class WordList(wid.QScrollArea):
     wordClicked = core.pyqtSignal(object)
+    wordCopied = core.pyqtSignal(object)
 
     def __init__(self, controller: c.MainController) -> None:
         super().__init__()
@@ -90,15 +59,15 @@ class WordList(wid.QScrollArea):
         self.setWidget(container)
 
     def highlightWord(self, item: WordListItem) -> None:
-        for i in self.items:
-            i.unselect()
+        for index in self.items:
+            index.unselect()
         item.select()
-        self.wordClicked.emit(item.text())
+        self.wordClicked.emit(item.word)
 
     def populate(self, words: list[str]) -> None:
         # Remove all widgets from the layout
-        for i in reversed(range(self.grid.count())):
-            self.grid.itemAt(i).widget().setParent(None) # type: ignore
+        for index in reversed(range(self.grid.count())):
+            self.grid.itemAt(index).widget().setParent(None) # type: ignore
         self.items = set()
 
         nb = 1
@@ -114,7 +83,7 @@ class WordList(wid.QScrollArea):
             self.items.add(item)
 
             item.clicked.connect(self.highlightWord)
-            item.setContentsMargins(10, 10, 10, 10)
+            item.copied.connect(lambda item: self.wordCopied.emit(item.word))
             self.grid.addWidget(item, nb - 1, 1)
             nb += 1
 

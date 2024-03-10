@@ -10,11 +10,17 @@ class Strings:
 class Paths:
 
     ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-    LANG_DIR = os.path.join(ROOT, 'lang')
     CHARSETS_DIR = os.path.join(ROOT, 'charsets')
     FONTS_DIR = os.path.join(ROOT, 'fonts')
+    IMG_DIR = os.path.join(ROOT, 'img')
+    LANG_DIR = os.path.join(ROOT, 'lang')
 
     LOG_FILE = os.path.join(ROOT, Strings.APPLICATION_NAME.lower() + '.log')
+
+class Images:
+
+    CLIPBOARD = os.path.join(Paths.IMG_DIR, 'clipboard.png')
+    VALID = os.path.join(Paths.IMG_DIR, 'valid.png')
 
 class Colors:
 

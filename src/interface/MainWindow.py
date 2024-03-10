@@ -42,6 +42,7 @@ class MainWindow(wid.QMainWindow):
 
         self.wordList = i.WordList(self.controller)
         self.wordList.wordClicked.connect(self.setPattern)
+        self.wordList.wordCopied.connect(self.controller.onSendToClipboard)
         
         self.patternInput = i.PatternInput(self.onGenerate)
         self.generateButton = i.GenerateButton(self.onGenerate)

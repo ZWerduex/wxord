@@ -10,5 +10,6 @@
     "Status": "Statut",
     "Status_GeneratedWord": "{nb} mot généré",
     "Status_GeneratedWords": "{nb} mots générés",
-    "Status_WordSentToPatternInput": "'{word}' envoyé dans le champ de saisie"
+    "Status_WordSentToPatternInput": "'{word}' envoyé dans le champ de saisie",
+    "Status_WordSentToClipboard": "'{word}' copié dans le presse-papier"
 }

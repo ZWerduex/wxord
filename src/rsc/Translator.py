@@ -44,6 +44,6 @@ class Translator:
             with open(file, 'r', encoding='utf-8') as f:
                 # load json data
                 cls.DATA[lang] = json.load(f)
-        LOGGER.debug(f'Loaded {len(cls.DATA)} languages')
+        LOGGER.info(f'Loaded {len(cls.DATA)} languages')
         
     
