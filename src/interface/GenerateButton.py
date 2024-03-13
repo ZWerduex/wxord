@@ -6,9 +6,8 @@ import rsc
 
 class GenerateButton(wid.QPushButton):
 
-    def __init__(self, onGenerate: typing.Callable[[], None]) -> None:
-        super().__init__('Generate')
-        self.clicked.connect(onGenerate)
+    def __init__(self) -> None:
+        super().__init__()
         self.reloadTranslation()
 
     def reloadTranslation(self) -> None:

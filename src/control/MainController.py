@@ -19,6 +19,8 @@ class MainController:
     def __init__(self, window: i.MainWindow):
         self.window = window
 
+        self.itemSentToPattern = None
+
     @property
     def charsets(self) -> dict[str, dict]:
         ext = 'json'
@@ -26,7 +28,7 @@ class MainController:
         files = glob.glob(os.path.join(rsc.Paths.CHARSETS_DIR, f'*.{ext}'))
         for file in files:
             lang = os.path.basename(file).replace(f'.{ext}', '')
-            with open(file, 'r', encoding='utf-8') as f:
+            with open(file, 'r', encoding = 'utf-8') as f:
                 cs[lang] = json.load(f)
         if len(files) == 0:
             LOGGER.info('No charsets file found')
@@ -43,6 +45,18 @@ class MainController:
         self.window.footer.setStatus(
             rsc.Translator.tr('Status_WordSentToClipboard').format(word = word)
         )
+
+    def onSendToPatternInput(self, item: i.WordListItem) -> None:
+        self.itemSentToPattern = item
+        pattern = item.word
+        LOGGER.debug(f"Setting pattern to word '{pattern}'")
+        self.window.footer.setStatus(rsc.Translator.tr('Status_WordSentToPatternInput').format(word = pattern))
+        self.window.setPattern(pattern)
+
+    def onPatternEdited(self, pattern: str) -> None:
+        if self.itemSentToPattern is not None:
+            self.itemSentToPattern.icon.unvalidate()
+            self.itemSentToPattern = None
 
     def onGenerate(self, pattern: str) -> None:
         cs = self.charsets['basic_french']['charsets']

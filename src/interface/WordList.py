@@ -10,8 +10,8 @@ import rsc
 
 
 class WordList(wid.QScrollArea):
-    wordClicked = core.pyqtSignal(object)
-    wordCopied = core.pyqtSignal(object)
+    itemClicked = core.pyqtSignal(object)
+    itemIconClicked = core.pyqtSignal(object)
 
     def __init__(self, controller: c.MainController) -> None:
         super().__init__()
@@ -58,11 +58,15 @@ class WordList(wid.QScrollArea):
         container.setLayout(vbox)
         self.setWidget(container)
 
-    def highlightWord(self, item: WordListItem) -> None:
+    def _itemClicked(self, item: WordListItem) -> None:
         for index in self.items:
             index.unselect()
         item.select()
-        self.wordClicked.emit(item.word)
+        self.itemClicked.emit(item.word)
+
+    def _itemIconClicked(self, item: WordListItem) -> None:
+        item.icon.validate()
+        self.itemIconClicked.emit(item)
 
     def populate(self, words: list[str]) -> None:
         # Remove all widgets from the layout
@@ -82,8 +86,8 @@ class WordList(wid.QScrollArea):
             item = WordListItem(word)
             self.items.add(item)
 
-            item.clicked.connect(self.highlightWord)
-            item.copied.connect(lambda item: self.wordCopied.emit(item.word))
+            item.labelClicked.connect(self._itemClicked)
+            item.iconClicked.connect(self._itemIconClicked)
             self.grid.addWidget(item, nb - 1, 1)
             nb += 1
 

@@ -16,48 +16,55 @@ class WordListItemLabel(wid.QLabel):
     def mouseReleaseEvent(self, event: gui.QMouseEvent) -> None:
         self.clicked.emit()
 
-class WordListClipboardIcon(wid.QLabel):
+class WordListItemIcon(wid.QLabel):
     clicked = core.pyqtSignal()
 
     def __init__(self) -> None:
         super().__init__()
         
-        iconSize = 20
+        iconSize = 30
+        margin = 5
+
         self.valid = gui.QPixmap(rsc.Images.VALID).scaled(
             iconSize, iconSize,
             core.Qt.AspectRatioMode.KeepAspectRatio,
             core.Qt.TransformationMode.SmoothTransformation
         )
-        self.clipboard = gui.QPixmap(rsc.Images.CLIPBOARD).scaled(
+        self.enter = gui.QPixmap(rsc.Images.ENTER).scaled(
             iconSize, iconSize,
             core.Qt.AspectRatioMode.KeepAspectRatio,
             core.Qt.TransformationMode.SmoothTransformation
         )
-        self.setPixmap(self.clipboard)
+        self.setPixmap(self.enter)
+        self.validated = False
 
         self.setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor))
 
-        self.setContentsMargins(10, 10, 10, 10)
+        self.setContentsMargins(margin, margin, margin, margin)
 
     def validate(self) -> None:
         self.setPixmap(self.valid)
-        core.QTimer.singleShot(5000, lambda : self.setPixmap(self.clipboard))
+        self.validated = True
+
+    def unvalidate(self) -> None:
+        self.setPixmap(self.enter)
+        self.validated = False
 
     def mouseReleaseEvent(self, event: gui.QMouseEvent) -> None:
         self.clicked.emit()
 
 class WordListItem(wid.QWidget):
-    clicked = core.pyqtSignal(object)
-    copied = core.pyqtSignal(object)
+    labelClicked = core.pyqtSignal(object)
+    iconClicked = core.pyqtSignal(object)
 
     def __init__(self, word: str) -> None:
         super().__init__()
 
         self.label = WordListItemLabel(word)
-        self.label.clicked.connect(lambda : self.clicked.emit(self))
+        self.label.clicked.connect(lambda : self.labelClicked.emit(self))
 
-        self.icon = WordListClipboardIcon()
-        self.icon.clicked.connect(self.iconClicked)
+        self.icon = WordListItemIcon()
+        self.icon.clicked.connect(lambda : self.iconClicked.emit(self))
 
         layout = wid.QHBoxLayout()
         layout.setSpacing(0)
@@ -67,10 +74,6 @@ class WordListItem(wid.QWidget):
         self.setLayout(layout)
 
         self.unselect()
-
-    def iconClicked(self) -> None:
-        self.icon.validate()
-        self.copied.emit(self)
 
     def enterEvent(self, event: core.QEvent) -> None:
         if not self.selected:

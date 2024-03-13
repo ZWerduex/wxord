@@ -6,9 +6,8 @@ import rsc
 
 class PatternInput(wid.QLineEdit):
 
-    def __init__(self, onGenerate: typing.Callable[[], None]) -> None:
+    def __init__(self) -> None:
         super().__init__()
-        self.returnPressed.connect(onGenerate)
         self.reloadTranslation()
 
     def reloadTranslation(self) -> None:

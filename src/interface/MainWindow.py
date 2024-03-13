@@ -41,11 +41,15 @@ class MainWindow(wid.QMainWindow):
         self.footer = i.Footer()
 
         self.wordList = i.WordList(self.controller)
-        self.wordList.wordClicked.connect(self.setPattern)
-        self.wordList.wordCopied.connect(self.controller.onSendToClipboard)
+        self.wordList.itemClicked.connect(self.controller.onSendToClipboard)
+        self.wordList.itemIconClicked.connect(self.controller.onSendToPatternInput)
         
-        self.patternInput = i.PatternInput(self.onGenerate)
-        self.generateButton = i.GenerateButton(self.onGenerate)
+        onGenerate = lambda : self.controller.onGenerate(self.pattern)
+        self.patternInput = i.PatternInput()
+        self.patternInput.returnPressed.connect(onGenerate)
+        self.patternInput.textEdited.connect(self.controller.onPatternEdited)
+        self.generateButton = i.GenerateButton()
+        self.generateButton.clicked.connect(onGenerate)
 
         leftPanel = wid.QVBoxLayout()
         leftPanel.setSpacing(0)
@@ -72,9 +76,6 @@ class MainWindow(wid.QMainWindow):
 
     # HANDY METHODS
         
-    def onGenerate(self) -> None:
-        self.controller.onGenerate(self.pattern)
-        
     def reloadTranslations(self) -> None:
         LOGGER.debug('Reloading translations')
         self.header.reloadTranslation()
@@ -89,6 +90,4 @@ class MainWindow(wid.QMainWindow):
         return self.patternInput.text()
     
     def setPattern(self, pattern: str) -> None:
-        LOGGER.debug(f"Setting pattern to word '{pattern}'")
-        self.footer.setStatus(rsc.Translator.tr('Status_WordSentToPatternInput').format(word = pattern))
         self.patternInput.setText(pattern)

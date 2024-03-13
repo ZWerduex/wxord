@@ -19,7 +19,7 @@ class Paths:
 
 class Images:
 
-    CLIPBOARD = os.path.join(Paths.IMG_DIR, 'clipboard.png')
+    ENTER = os.path.join(Paths.IMG_DIR, 'enter.png')
     VALID = os.path.join(Paths.IMG_DIR, 'valid.png')
 
 class Colors:
