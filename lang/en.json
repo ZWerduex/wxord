@@ -4,7 +4,8 @@
     "HeaderAuthor_text": "by {author}",
 
     "PatternInput_placeholder": "Enter a pattern",
-
+    "MaxLengthInput_label": "Max length",
+    "BatchSizeInput_label": "Batch size",
     "GenerateButton_text": "Generate",
 
     "Status": "Status",

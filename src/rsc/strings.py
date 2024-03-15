@@ -37,6 +37,24 @@ class Colors:
     WORD_LIST_SCROLLBAR_HANDLE = '#434952'
     WORD_LIST_SCROLLBAR_BACKGROUND = LIGHT_GRAY
 
+class Styles:
+
+    SCROLLBAR = """
+        QScrollBar {
+            background: """ + Colors.WORD_LIST_SCROLLBAR_BACKGROUND + """;
+        }
+        QScrollBar::handle {
+            background: """ + Colors.WORD_LIST_SCROLLBAR_HANDLE + """;
+        }
+        QScrollBar::add-line, QScrollBar::sub-line {
+            height: 0px;
+            background: none;
+        }
+        QScrollBar::add-page, QScrollBar::sub-page {
+            background: none;
+        }
+    """
+
 class Fonts:
 
     TITLE = gui.QFont('League Spartan', 36)

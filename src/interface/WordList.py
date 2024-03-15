@@ -22,23 +22,8 @@ class WordList(wid.QScrollArea):
         self.setFrameStyle(wid.QFrame.Shape.NoFrame)
         self.setStyleSheet(f'background-color: {rsc.Colors.WORD_LIST_BACKGROUND};')
         # Scrollbar properties
-        style = """
-            QScrollBar {
-                background: """ + rsc.Colors.WORD_LIST_SCROLLBAR_BACKGROUND + """;
-            }
-            QScrollBar::handle {
-                background: """ + rsc.Colors.WORD_LIST_SCROLLBAR_HANDLE + """;
-            }
-            QScrollBar::add-line, QScrollBar::sub-line {
-                height: 0px;
-                background: none;
-            }
-            QScrollBar::add-page, QScrollBar::sub-page {
-                background: none;
-            }
-            """
-        self.verticalScrollBar().setStyleSheet(style) # type: ignore
-        self.horizontalScrollBar().setStyleSheet(style) # type: ignore
+        self.verticalScrollBar().setStyleSheet(rsc.Styles.SCROLLBAR) # type: ignore
+        self.horizontalScrollBar().setStyleSheet(rsc.Styles.SCROLLBAR) # type: ignore
 
         self.controller = controller
         self.items = set()

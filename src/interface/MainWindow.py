@@ -44,10 +44,14 @@ class MainWindow(wid.QMainWindow):
         self.wordList.itemClicked.connect(self.controller.onSendToClipboard)
         self.wordList.itemIconClicked.connect(self.controller.onSendToPatternInput)
         
+        # Left panel
         onGenerate = lambda : self.controller.onGenerate(self.pattern)
         self.patternInput = i.PatternInput()
         self.patternInput.returnPressed.connect(onGenerate)
         self.patternInput.textEdited.connect(self.controller.onPatternEdited)
+
+        self.settingsPanel = i.SettingsPanel()
+
         self.generateButton = i.GenerateButton()
         self.generateButton.clicked.connect(onGenerate)
 
@@ -55,6 +59,7 @@ class MainWindow(wid.QMainWindow):
         leftPanel.setSpacing(0)
         leftPanel.setContentsMargins(0, 0, 0, 0)
         leftPanel.addWidget(self.patternInput)
+        leftPanel.addWidget(self.settingsPanel)
         leftPanel.addWidget(self.generateButton)
 
         main = wid.QHBoxLayout()
@@ -84,6 +89,14 @@ class MainWindow(wid.QMainWindow):
         self.generateButton.reloadTranslation()
 
     # DATA FIELDS
+        
+    @property
+    def maxLength(self) -> int:
+        return self.settingsPanel.maxLength
+    
+    @property
+    def batchSize(self) -> int:
+        return self.settingsPanel.batchSize
     
     @property
     def pattern(self) -> str:

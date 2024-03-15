@@ -69,7 +69,9 @@ class MainController:
                 weights.append(value)
             tmp.append(g.CharSet(chars, weights))
         
-        generated = sorted(g.Generator(tmp).generateMany(pattern, 20, 15))
+        generated = sorted(g.Generator(tmp).generateMany(
+            pattern, self.window.maxLength, self.window.batchSize
+        ))
         self.window.wordList.empty()
 
         if len(generated) > 0:
