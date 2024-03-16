@@ -56,4 +56,4 @@ Before reporting an issue, see below if it is known. If you find any unknown iss
 
 ### Known issues
 
-- Using scaled QPixmap in QLabel in WordList renders the icons as blurry and pixelated. Using `Qt.AspectRatioMode.KeepAspectRatio` and `Qt.TransformationMode.SmoothTransformation` does not solve the issue for some reason. Using PNG images at wanted resolutions in order to skip QPixmap scaling does not either solve the issue.
+*No known issues*

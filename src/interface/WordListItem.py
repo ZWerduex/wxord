@@ -25,16 +25,8 @@ class WordListItemIcon(wid.QLabel):
         iconSize = 30
         margin = 5
 
-        self.valid = gui.QPixmap(rsc.Images.VALID).scaled(
-            iconSize, iconSize,
-            core.Qt.AspectRatioMode.KeepAspectRatio,
-            core.Qt.TransformationMode.SmoothTransformation
-        )
-        self.enter = gui.QPixmap(rsc.Images.ENTER).scaled(
-            iconSize, iconSize,
-            core.Qt.AspectRatioMode.KeepAspectRatio,
-            core.Qt.TransformationMode.SmoothTransformation
-        )
+        self.valid = gui.QIcon(rsc.Images.VALID).pixmap(iconSize, iconSize)
+        self.enter = gui.QIcon(rsc.Images.ENTER).pixmap(iconSize, iconSize)
         self.setPixmap(self.enter)
         self.validated = False
 

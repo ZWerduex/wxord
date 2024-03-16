@@ -19,8 +19,8 @@ class Paths:
 
 class Images:
 
-    ENTER = os.path.join(Paths.IMG_DIR, 'enter.png')
-    VALID = os.path.join(Paths.IMG_DIR, 'valid.png')
+    ENTER = os.path.join(Paths.IMG_DIR, 'enter.svg')
+    VALID = os.path.join(Paths.IMG_DIR, 'valid.svg')
 
 class Colors:
 
