@@ -47,18 +47,20 @@ class MainController:
         )
 
     def onSendToPatternInput(self, item: i.WordListItem) -> None:
+        LOGGER.debug(f"Setting pattern to word '{item.word}'")
         self.itemSentToPattern = item
-        pattern = item.word
-        LOGGER.debug(f"Setting pattern to word '{pattern}'")
-        self.window.footer.setStatus(rsc.Translator.tr('Status_WordSentToPatternInput').format(word = pattern))
-        self.window.setPattern(pattern)
+        self.window.setPattern(item.word)
+        
+        self.window.footer.setStatus(
+            rsc.Translator.tr('Status_WordSentToPatternInput').format(word = item.word)
+        )
 
     def onPatternEdited(self, pattern: str) -> None:
         if self.itemSentToPattern is not None:
             self.itemSentToPattern.icon.unvalidate()
             self.itemSentToPattern = None
 
-    def onGenerate(self, pattern: str) -> None:
+    def onGenerate(self, pattern: str, maxLength: int, batchSize: int) -> None:
         cs = self.charsets['basic_french']['charsets']
         tmp = []
         for d in cs:
@@ -70,7 +72,7 @@ class MainController:
             tmp.append(g.CharSet(chars, weights))
         
         generated = sorted(g.Generator(tmp).generateMany(
-            pattern, self.window.maxLength, self.window.batchSize
+            pattern, maxLength, batchSize
         ))
         self.window.wordList.empty()
 

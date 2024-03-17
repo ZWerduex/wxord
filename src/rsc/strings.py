@@ -27,14 +27,27 @@ class Colors:
     WHITE = '#ffffff'
     LIGHT_GRAY = '#cccccc'
     GRAY = '#666666'
+    DARK_GRAY = '#434952'
 
-    HEADER_BACKGROUND = '#131D37'
+    METAL_BLUE = '#2A2F3D'
+    DEEP_DARK_BLUE = '#131D37'
+    DARK_BLUE = '#225a71'
+    BLUE = '#3a93b7'
 
-    LIST_ITEM_BACKGROUND = '#2A2F3D'
-    LIST_ITEM_BACKGROUND_HIGHLIGHT = '#3a93b7'
-    LIST_ITEM_BACKGROUND_HOVER = '#225a71'
+    DEFAULT_BACKGROUND = METAL_BLUE
+
+    HEADER_BACKGROUND = DEEP_DARK_BLUE
+
+    PATTERN_INPUT_BACKGROUND = DEFAULT_BACKGROUND
+    PATTERN_INPUT_FOCUS = DARK_BLUE
+    PATTERN_INPUT_HIGHLIGHT = BLUE
+
+    LIST_ITEM_BACKGROUND = DEFAULT_BACKGROUND
+    LIST_ITEM_BACKGROUND_HIGHLIGHT = BLUE
+    LIST_ITEM_BACKGROUND_HOVER = DARK_BLUE
+
     WORD_LIST_BACKGROUND = LIST_ITEM_BACKGROUND
-    WORD_LIST_SCROLLBAR_HANDLE = '#434952'
+    WORD_LIST_SCROLLBAR_HANDLE = DARK_GRAY
     WORD_LIST_SCROLLBAR_BACKGROUND = LIGHT_GRAY
 
 class Styles:
@@ -52,6 +65,25 @@ class Styles:
         }
         QScrollBar::add-page, QScrollBar::sub-page {
             background: none;
+        }
+    """
+
+    PATTERN_INPUT = """
+        QLineEdit {
+            background: """ + Colors.PATTERN_INPUT_BACKGROUND + """;
+            border: 3px solid """ + Colors.PATTERN_INPUT_BACKGROUND + """;
+            border-radius: 22px;
+            padding: 10px;
+
+            color: """ + Colors.WHITE + """;
+            letter-spacing: 2px;
+            selection-background-color: """ + Colors.PATTERN_INPUT_HIGHLIGHT + """;
+        }
+        QLineEdit::hover {
+            border: 3px solid """ + Colors.PATTERN_INPUT_FOCUS + """;
+        }
+        QLineEdit::focus {
+            border: 3px solid """ + Colors.PATTERN_INPUT_HIGHLIGHT + """;
         }
     """
 

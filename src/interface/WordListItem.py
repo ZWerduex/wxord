@@ -28,7 +28,6 @@ class WordListItemIcon(wid.QLabel):
         self.valid = gui.QIcon(rsc.Images.VALID).pixmap(iconSize, iconSize)
         self.enter = gui.QIcon(rsc.Images.ENTER).pixmap(iconSize, iconSize)
         self.setPixmap(self.enter)
-        self.validated = False
 
         self.setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor))
 
@@ -36,11 +35,9 @@ class WordListItemIcon(wid.QLabel):
 
     def validate(self) -> None:
         self.setPixmap(self.valid)
-        self.validated = True
 
     def unvalidate(self) -> None:
         self.setPixmap(self.enter)
-        self.validated = False
 
     def mouseReleaseEvent(self, event: gui.QMouseEvent) -> None:
         self.clicked.emit()

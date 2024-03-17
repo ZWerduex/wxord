@@ -1,3 +1,5 @@
+import PyQt6.QtCore as core
+import PyQt6.QtGui as gui
 import PyQt6.QtWidgets as wid
 
 import logging
@@ -5,22 +7,36 @@ LOGGER = logging.getLogger(__name__)
 
 import rsc
 
+class SettingWidgetLabel(wid.QLabel):
+    clicked = core.pyqtSignal()
+
+    def __init__(self, translationKey: str):
+        super().__init__(rsc.Translator.tr(translationKey))
+
+        self.translationKey = translationKey
+
+    def reloadTranslation(self) -> None:
+        self.setText(rsc.Translator.tr(self.translationKey))
+
+    def mouseReleaseEvent(self, ev: gui.QMouseEvent | None) -> None:
+        self.clicked.emit()
+
 class SettingWidget(wid.QWidget):
     def __init__(self, translationKey: str, baseValue: int):
         super().__init__()
-        self.translationKey = translationKey
-
-        self.label = wid.QLabel(rsc.Translator.tr(translationKey))
 
         self.input = wid.QSpinBox()
         self.input.setMinimum(1)
-        self.input.setMinimumWidth(80)
+        self.input.setMaximum(100)
         if baseValue > 0:
             self.input.setValue(baseValue)
         else:
             LOGGER.warning(f"Base value for setting '{translationKey}' is not greater than 0")
+
+        self.label = SettingWidgetLabel(translationKey)
+        self.label.clicked.connect(self.input.setFocus)
         
-        hbox = wid.QHBoxLayout()
+        hbox = wid.QVBoxLayout()
         hbox.setSpacing(0)
         hbox.setContentsMargins(0, 0, 0, 0)
         hbox.addWidget(self.label)
@@ -28,7 +44,7 @@ class SettingWidget(wid.QWidget):
         self.setLayout(hbox)
 
     def reloadTranslation(self) -> None:
-        self.label.setText(rsc.Translator.tr(self.translationKey))
+        self.label.reloadTranslation()
         
     @property
     def value(self) -> int:

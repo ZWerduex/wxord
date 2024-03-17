@@ -45,27 +45,14 @@ class MainWindow(wid.QMainWindow):
         self.wordList.itemIconClicked.connect(self.controller.onSendToPatternInput)
         
         # Left panel
-        onGenerate = lambda : self.controller.onGenerate(self.pattern)
-        self.patternInput = i.PatternInput()
-        self.patternInput.returnPressed.connect(onGenerate)
-        self.patternInput.textEdited.connect(self.controller.onPatternEdited)
-
-        self.settingsPanel = i.SettingsPanel()
-
-        self.generateButton = i.GenerateButton()
-        self.generateButton.clicked.connect(onGenerate)
-
-        leftPanel = wid.QVBoxLayout()
-        leftPanel.setSpacing(0)
-        leftPanel.setContentsMargins(0, 0, 0, 0)
-        leftPanel.addWidget(self.patternInput)
-        leftPanel.addWidget(self.settingsPanel)
-        leftPanel.addWidget(self.generateButton)
+        self.generationPanel = i.GenerationPanel()
+        self.generationPanel.generated.connect(self.controller.onGenerate)
+        self.generationPanel.patternEdited.connect(self.controller.onPatternEdited)
 
         main = wid.QHBoxLayout()
         main.setSpacing(0)
         main.setContentsMargins(0, 0, 0, 0)
-        main.addLayout(leftPanel)
+        main.addWidget(self.generationPanel)
         main.addWidget(self.wordList)
 
         vbox = wid.QVBoxLayout()
@@ -85,22 +72,7 @@ class MainWindow(wid.QMainWindow):
         LOGGER.debug('Reloading translations')
         self.header.reloadTranslation()
         self.footer.reloadTranslation()
-        self.patternInput.reloadTranslation()
-        self.generateButton.reloadTranslation()
-
-    # DATA FIELDS
-        
-    @property
-    def maxLength(self) -> int:
-        return self.settingsPanel.maxLength
-    
-    @property
-    def batchSize(self) -> int:
-        return self.settingsPanel.batchSize
-    
-    @property
-    def pattern(self) -> str:
-        return self.patternInput.text()
+        self.generationPanel.reloadTranslation()
     
     def setPattern(self, pattern: str) -> None:
-        self.patternInput.setText(pattern)
+        self.generationPanel.setPattern(pattern)
