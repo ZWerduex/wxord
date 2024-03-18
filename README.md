@@ -11,7 +11,7 @@ I have created this application because I'm interested in the concept of creatin
 ### Current features
 
 - Create words from a pattern
-- Three weighted sets of characters
+- Three weighted sets of characters (non configurable via the UI at the moment)
 - Use a generated word as a pattern
 - Copy to clipboard a generated word
 
@@ -19,11 +19,11 @@ I have created this application because I'm interested in the concept of creatin
 
 - Customizable character sets using the UI
 - Export and import sets of characters (yours or shared ones)
-- Export and import UI language files
 - Save generated words (like `Séodès` or `Talledra`, I like those words)
 - Export saved words to a file
-- A sort of "tutorial"
+- A sort of "tutorial" to learn how to use Wxord
 - Settings panel
+- Save last used language setting
 
 Actually, you can change the charset used by tweaking directly the JSON file in the `charsets` folder. More information about this in the [documentation](doc/doc.md).
 

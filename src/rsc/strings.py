@@ -21,6 +21,7 @@ class Images:
 
     ENTER = os.path.join(Paths.IMG_DIR, 'enter.svg')
     VALID = os.path.join(Paths.IMG_DIR, 'valid.svg')
+    DROP_DOWN = os.path.join(Paths.IMG_DIR, 'drop_down.svg')
 
 class Colors:
 
@@ -35,12 +36,13 @@ class Colors:
     BLUE = '#3a93b7'
 
     DEFAULT_BACKGROUND = METAL_BLUE
+    DEFAULT_FONT = WHITE
 
     HEADER_BACKGROUND = DEEP_DARK_BLUE
 
-    PATTERN_INPUT_BACKGROUND = DARK_GRAY
-    PATTERN_INPUT_FOCUS = DARK_BLUE
-    PATTERN_INPUT_HIGHLIGHT = BLUE
+    INPUT_BACKGROUND = DARK_GRAY
+    INPUT_FOCUS = BLUE
+    INPUT_HIGHLIGHT = DARK_BLUE
 
     LIST_ITEM_BACKGROUND = DEFAULT_BACKGROUND
     LIST_ITEM_BACKGROUND_HIGHLIGHT = BLUE
@@ -68,22 +70,62 @@ class Styles:
         }
     """
 
+    COMBO_BOX = """
+        QComboBox {
+            background: """ + Colors.INPUT_BACKGROUND + """;
+            border: 2px solid """ + Colors.INPUT_BACKGROUND + """;
+            padding-left: 7px;
+            padding-right: 18px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+            color: """ + Colors.DEFAULT_FONT + """;
+        }
+        QComboBox::hover {
+            border: 2px solid """ + Colors.INPUT_HIGHLIGHT + """;
+        }
+        QComboBox::focus, QComboBox::on {
+            border: 2px solid """ + Colors.INPUT_FOCUS + """;
+        }
+        QComboBox::drop-down {
+            border: 0px;
+        }
+        QComboBox::down-arrow {
+            image: url(img/drop_down.svg);
+            width: 10px;
+            height: 10px;
+            margin-right: 7px;
+        }
+        QComboBox QAbstractItemView {
+            background: """ + Colors.INPUT_BACKGROUND + """;
+            padding: 5px;
+            padding-left: 6px;
+            outline: 0px;
+            
+            color: """ + Colors.DEFAULT_FONT + """;
+        }
+        QComboBox QAbstractItemView::item:hover, QComboBox QAbstractItemView::item:focus {
+            background: """ + Colors.LIST_ITEM_BACKGROUND_HIGHLIGHT + """;
+        }
+            
+    """
+
     PATTERN_INPUT = """
         QLineEdit {
-            background: """ + Colors.PATTERN_INPUT_BACKGROUND + """;
-            border: 3px solid """ + Colors.PATTERN_INPUT_BACKGROUND + """;
+            background: """ + Colors.INPUT_BACKGROUND + """;
+            border: 3px solid """ + Colors.INPUT_BACKGROUND + """;
             border-radius: 22px;
             padding: 10px;
 
-            color: """ + Colors.WHITE + """;
+            color: """ + Colors.DEFAULT_FONT + """;
             letter-spacing: 2px;
-            selection-background-color: """ + Colors.PATTERN_INPUT_HIGHLIGHT + """;
+            selection-background-color: """ + Colors.INPUT_FOCUS + """;
         }
         QLineEdit::hover {
-            border: 3px solid """ + Colors.PATTERN_INPUT_FOCUS + """;
+            border: 3px solid """ + Colors.INPUT_HIGHLIGHT + """;
         }
         QLineEdit::focus {
-            border: 3px solid """ + Colors.PATTERN_INPUT_HIGHLIGHT + """;
+            border: 3px solid """ + Colors.INPUT_FOCUS + """;
         }
     """
 
@@ -104,10 +146,11 @@ class Fonts:
     AUTHOR = gui.QFont('League Spartan', 12)
 
     LIST_INDEX = gui.QFont('Montserrat', 7, gui.QFont.Weight.Light)
-    SETTING = gui.QFont('Montserrat', 9, gui.QFont.Weight.Light)
+    SETTING = gui.QFont('Montserrat', 9)
 
     BASE = gui.QFont('Montserrat', 12, gui.QFont.Weight.Normal)
     BOLD = gui.QFont('Montserrat', 12, gui.QFont.Weight.Bold)
+    SMALL = gui.QFont('Montserrat', 10, gui.QFont.Weight.Normal)
 
 
 for member in dir(Fonts):

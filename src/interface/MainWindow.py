@@ -19,9 +19,15 @@ class MainWindow(wid.QMainWindow):
         # Load fonts
         for file in glob.glob(os.path.join(rsc.Paths.FONTS_DIR, '*.ttf')):
             gui.QFontDatabase.addApplicationFont(file)
+        # Initialize translator
+        rsc.Translator.load()
 
         self.initWindow(width, height)
         self.buildWidgets()
+
+        # Init the language combo box
+        self.footer.langsCombo.populate(rsc.Translator.langs())
+        self.footer.langsCombo.setLang(rsc.Translator.LANG)
 
     # WINDOW BAKING
     
@@ -39,6 +45,8 @@ class MainWindow(wid.QMainWindow):
     def buildWidgets(self):
         self.header = i.Header()
         self.footer = i.Footer()
+        self.footer.langChanged.connect(self.controller.onChangeLang)
+        self.footer.comboBoxDroppedDown.connect(self.controller.onScanTranslationsFiles)
 
         self.wordList = i.WordList(self.controller)
         self.wordList.itemClicked.connect(self.controller.onSendToClipboard)

@@ -15,9 +15,16 @@ class Translator:
 
     @classmethod
     def tr(cls, key: str) -> str:
+        default = f'[{cls.LANG}] {key}'
+
+        if cls.LANG not in cls.DATA.keys():
+            LOGGER.warning(f"Language '{cls.LANG}' not found")
+            return default
         if key not in cls.DATA[cls.LANG].keys():
             LOGGER.warning(f"Key '{key}' not found in language '{cls.LANG}'")
-        return cls.DATA[cls.LANG].get(key, key)
+            return default
+        
+        return cls.DATA[cls.LANG][key]
     
     @classmethod
     def langs(cls) -> dict[str, str]:

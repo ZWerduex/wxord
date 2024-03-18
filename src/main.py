@@ -47,9 +47,7 @@ def excepthook(
 # ----------------------------------------------------
 
 def main():
-    # Configuration
-    rsc.Translator.load()
-
+    
     window = i.MainWindow(1000, 600)
     window.show()
     sys.exit(app.exec())

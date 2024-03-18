@@ -60,6 +60,17 @@ class MainController:
             self.itemSentToPattern.icon.unvalidate()
             self.itemSentToPattern = None
 
+    def onChangeLang(self, lang: str, name: str) -> None:
+        LOGGER.debug(f"Changing language to '{lang}' ({name})")
+        rsc.Translator.setLang(lang)
+        self.window.reloadTranslations()
+
+    def onScanTranslationsFiles(self) -> None:
+        LOGGER.debug('Scanning translations files')
+        rsc.Translator.load()
+        self.window.footer.langsCombo.populate(rsc.Translator.langs())
+        self.window.footer.langsCombo.setLang(rsc.Translator.LANG)
+
     def onGenerate(self, pattern: str, maxLength: int, batchSize: int) -> None:
         cs = self.charsets['basic_french']['charsets']
         tmp = []

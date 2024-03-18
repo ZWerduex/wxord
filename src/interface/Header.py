@@ -11,7 +11,7 @@ class Header(wid.QWidget):
 
         title = wid.QLabel(rsc.Strings.APPLICATION_NAME)
         title.setFont(rsc.Fonts.TITLE)
-        title.setStyleSheet(f'color: {rsc.Colors.WHITE};')
+        title.setStyleSheet(f'color: {rsc.Colors.DEFAULT_FONT};')
         title.setContentsMargins(25, 20, 25, 20)
 
         self.author = wid.QLabel(

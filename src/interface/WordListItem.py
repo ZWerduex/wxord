@@ -10,7 +10,7 @@ class WordListItemLabel(wid.QLabel):
     def __init__(self, word: str) -> None:
         super().__init__(word)
 
-        self.setStyleSheet(f'color: {rsc.Colors.WHITE};')
+        self.setStyleSheet(f'color: {rsc.Colors.DEFAULT_FONT};')
         self.setContentsMargins(rsc.Margins.WORDLIST, rsc.Margins.WORDLIST, rsc.Margins.WORDLIST, rsc.Margins.WORDLIST)
         self.setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor))
 
