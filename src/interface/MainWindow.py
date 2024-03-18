@@ -49,11 +49,23 @@ class MainWindow(wid.QMainWindow):
         self.generationPanel.generated.connect(self.controller.onGenerate)
         self.generationPanel.patternEdited.connect(self.controller.onPatternEdited)
 
+        self.charsetsPanel = i.CharsetsPanel()
+
+        leftPanel = wid.QWidget()
+        leftPanel.setStyleSheet(rsc.Styles.LEFT_PANEL)
+
+        leftLayout = wid.QVBoxLayout()
+        leftLayout.setSpacing(rsc.Margins.BASE)
+        leftLayout.setContentsMargins(rsc.Margins.BASE, rsc.Margins.BASE, rsc.Margins.BASE, rsc.Margins.BASE)
+        leftLayout.addWidget(self.generationPanel)
+        leftLayout.addWidget(self.wordList, 1)
+        leftPanel.setLayout(leftLayout)
+
         main = wid.QHBoxLayout()
         main.setSpacing(0)
         main.setContentsMargins(0, 0, 0, 0)
-        main.addWidget(self.generationPanel)
-        main.addWidget(self.wordList)
+        main.addWidget(leftPanel)
+        main.addWidget(self.charsetsPanel, 1)
 
         vbox = wid.QVBoxLayout()
         vbox.setSpacing(0)

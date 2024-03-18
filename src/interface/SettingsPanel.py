@@ -7,11 +7,14 @@ LOGGER = logging.getLogger(__name__)
 
 import rsc
 
+MAXIMUM_INPUT = 100
+
 class SettingWidgetLabel(wid.QLabel):
     clicked = core.pyqtSignal()
 
     def __init__(self, translationKey: str):
         super().__init__(rsc.Translator.tr(translationKey))
+        self.setFont(rsc.Fonts.SETTING)
 
         self.translationKey = translationKey
 
@@ -26,8 +29,10 @@ class SettingWidget(wid.QWidget):
         super().__init__()
 
         self.input = wid.QSpinBox()
+        self.input.setFont(rsc.Fonts.SETTING)
+        self.input.setFixedWidth(self.fontMetrics().horizontalAdvance(str(MAXIMUM_INPUT)) + 30)
         self.input.setMinimum(1)
-        self.input.setMaximum(100)
+        self.input.setMaximum(MAXIMUM_INPUT)
         if baseValue > 0:
             self.input.setValue(baseValue)
         else:
@@ -36,8 +41,8 @@ class SettingWidget(wid.QWidget):
         self.label = SettingWidgetLabel(translationKey)
         self.label.clicked.connect(self.input.setFocus)
         
-        hbox = wid.QVBoxLayout()
-        hbox.setSpacing(0)
+        hbox = wid.QHBoxLayout()
+        hbox.setSpacing(rsc.Margins.BASE)
         hbox.setContentsMargins(0, 0, 0, 0)
         hbox.addWidget(self.label)
         hbox.addWidget(self.input)
@@ -58,7 +63,7 @@ class SettingsPanel(wid.QWidget):
         self.batchSizeInput = SettingWidget('BatchSizeInput_label', 20)
         
         hbox = wid.QHBoxLayout()
-        hbox.setSpacing(0)
+        hbox.setSpacing(rsc.Margins.BASE)
         hbox.setContentsMargins(0, 0, 0, 0)
         hbox.addStretch(1)
         hbox.addWidget(self.maxLengthInput)

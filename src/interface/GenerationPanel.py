@@ -46,7 +46,7 @@ class GenerationPanel(wid.QWidget):
         self.settingsPanel = SettingsPanel()
 
         hbox = wid.QVBoxLayout()
-        hbox.setSpacing(0)
+        hbox.setSpacing(rsc.Margins.BASE)
         hbox.setContentsMargins(0, 0, 0, 0)
         hbox.addWidget(self.patternInput)
         hbox.addWidget(self.settingsPanel)

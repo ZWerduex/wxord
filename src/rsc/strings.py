@@ -38,7 +38,7 @@ class Colors:
 
     HEADER_BACKGROUND = DEEP_DARK_BLUE
 
-    PATTERN_INPUT_BACKGROUND = DEFAULT_BACKGROUND
+    PATTERN_INPUT_BACKGROUND = DARK_GRAY
     PATTERN_INPUT_FOCUS = DARK_BLUE
     PATTERN_INPUT_HIGHLIGHT = BLUE
 
@@ -87,12 +87,24 @@ class Styles:
         }
     """
 
+    LEFT_PANEL = """
+        QWidget {
+            background: """ + Colors.DEFAULT_BACKGROUND + """;
+        }
+    """
+
+class Margins:
+
+    BASE = 10
+    WORDLIST = 5
+
 class Fonts:
 
     TITLE = gui.QFont('League Spartan', 36)
     AUTHOR = gui.QFont('League Spartan', 12)
 
-    LIST_INDEX = gui.QFont('Montserrat', 8, gui.QFont.Weight.Light)
+    LIST_INDEX = gui.QFont('Montserrat', 7, gui.QFont.Weight.Light)
+    SETTING = gui.QFont('Montserrat', 9, gui.QFont.Weight.Light)
 
     BASE = gui.QFont('Montserrat', 12, gui.QFont.Weight.Normal)
     BOLD = gui.QFont('Montserrat', 12, gui.QFont.Weight.Bold)

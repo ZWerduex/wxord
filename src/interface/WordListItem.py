@@ -9,8 +9,9 @@ class WordListItemLabel(wid.QLabel):
 
     def __init__(self, word: str) -> None:
         super().__init__(word)
+
         self.setStyleSheet(f'color: {rsc.Colors.WHITE};')
-        self.setContentsMargins(10, 10, 10, 10)
+        self.setContentsMargins(rsc.Margins.WORDLIST, rsc.Margins.WORDLIST, rsc.Margins.WORDLIST, rsc.Margins.WORDLIST)
         self.setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor))
 
     def mouseReleaseEvent(self, event: gui.QMouseEvent) -> None:
@@ -21,9 +22,11 @@ class WordListItemIcon(wid.QLabel):
 
     def __init__(self) -> None:
         super().__init__()
+        sp = self.sizePolicy()
+        sp.setRetainSizeWhenHidden(True)
+        self.setSizePolicy(sp)
         
         iconSize = 30
-        margin = 5
 
         self.valid = gui.QIcon(rsc.Images.VALID).pixmap(iconSize, iconSize)
         self.enter = gui.QIcon(rsc.Images.ENTER).pixmap(iconSize, iconSize)
@@ -31,7 +34,7 @@ class WordListItemIcon(wid.QLabel):
 
         self.setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor))
 
-        self.setContentsMargins(margin, margin, margin, margin)
+        self.setContentsMargins(0, 0, 0, 0)
 
     def validate(self) -> None:
         self.setPixmap(self.valid)

@@ -8,7 +8,6 @@ from interface.WordListItem import WordListItem
 import control as c
 import rsc
 
-
 class WordList(wid.QScrollArea):
     itemClicked = core.pyqtSignal(object)
     itemIconClicked = core.pyqtSignal(object)
@@ -57,15 +56,15 @@ class WordList(wid.QScrollArea):
         # Remove all widgets from the layout
         for index in reversed(range(self.grid.count())):
             self.grid.itemAt(index).widget().setParent(None) # type: ignore
-        self.items = set()
 
         nb = 1
+        self.items = set()
         for word in words:
             
             index = wid.QLabel(str(nb))
             index.setFont(rsc.Fonts.LIST_INDEX)
             index.setStyleSheet(f'color: {rsc.Colors.LIGHT_GRAY}; background-color: transparent;')
-            index.setContentsMargins(10, 10, 10, 10)
+            index.setContentsMargins(rsc.Margins.WORDLIST, rsc.Margins.WORDLIST, rsc.Margins.WORDLIST, rsc.Margins.WORDLIST)
             self.grid.addWidget(index, nb - 1, 0)
 
             item = WordListItem(word)
