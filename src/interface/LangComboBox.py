@@ -15,6 +15,8 @@ class LangComboBox(wid.QComboBox):
         super().__init__()
         self.setStyleSheet(rsc.Styles.COMBO_BOX)
         self.setFont(rsc.Fonts.SMALL)
+        self.setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor))
+        self.view().setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor)) # type: ignore
 
         self.setEditable(False)
         

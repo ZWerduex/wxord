@@ -45,10 +45,10 @@ class Footer(wid.QWidget):
 
     def setStatus(self, msg: str) -> None:
         self.status.setText(msg)
-    
+
     def clearStatus(self) -> None:
-        self.status.setText('-')
+        self.setStatus('')
 
     def reloadTranslation(self) -> None:
         self.statusTitle.setText(rsc.Translator.tr('Status'))
-        self.clearStatus()
+        self.setStatus(rsc.Translator.tr('Status_LanguageChanged').format(lang = rsc.Translator.tr('language_name')))

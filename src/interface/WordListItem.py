@@ -34,7 +34,7 @@ class WordListItemIcon(wid.QLabel):
 
         self.setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor))
 
-        self.setContentsMargins(0, 0, 0, 0)
+        self.setContentsMargins(rsc.Margins.WORDLIST, 0, rsc.Margins.WORDLIST, 0)
 
     def validate(self) -> None:
         self.setPixmap(self.valid)

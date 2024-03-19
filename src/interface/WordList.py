@@ -22,7 +22,9 @@ class WordList(wid.QScrollArea):
         self.setStyleSheet(f'background-color: {rsc.Colors.WORD_LIST_BACKGROUND};')
         # Scrollbar properties
         self.verticalScrollBar().setStyleSheet(rsc.Styles.SCROLLBAR) # type: ignore
+        self.verticalScrollBar().setCursor(core.Qt.CursorShape.PointingHandCursor) # type: ignore
         self.horizontalScrollBar().setStyleSheet(rsc.Styles.SCROLLBAR) # type: ignore
+        self.horizontalScrollBar().setCursor(core.Qt.CursorShape.PointingHandCursor) # type: ignore
 
         self.controller = controller
         self.items = set()

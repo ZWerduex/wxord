@@ -82,6 +82,10 @@ class MainController:
                 weights.append(value)
             tmp.append(g.CharSet(chars, weights))
         
+        if len(pattern) == 0:
+            self.window.footer.setStatus(rsc.Translator.tr('Status_PatternIsEmptyNoWordGenerated'))
+            return
+        
         generated = sorted(g.Generator(tmp).generateMany(
             pattern, maxLength, batchSize
         ))
@@ -95,3 +99,5 @@ class MainController:
             self.window.footer.setStatus(
                 rsc.Translator.tr(key).format(nb = len(words))
             )
+        else:
+            raise RuntimeError(f"Pattern '{pattern}' generated no word")

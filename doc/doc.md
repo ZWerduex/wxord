@@ -92,28 +92,22 @@ In the next subsection, documentation indicates a list of required parameters fo
 ### Current keys supported
 
 - `language_name` : The name of the language in its own language
-
 - `HeaderAuthor_text`: Expression indicating who is the author
   - `author` : the author of the application (`Z-WX`)
-
 - `PatternInput_placeholder` : The placeholder of the input used to enter the pattern
-
 - `GenerateButton_text` : The text of the button used to generate a word
-
 - `Status` : Used as the title for the status bar in the footer
-
 - `Status_GeneratedWord` : Status message to indicate how much words were generated
-  - `nb` : the amount of generated words (`0` or `
-  1`)
-
+  - `nb` : the amount of generated words (`0` or `1`)
 - `Status_GeneratedWords` : Plural form of `Status_GeneratedWord`
   - `nb` : the amount of generated words (`2` or more)
-
+- `Status_PatternIsEmptyNoWordGenerated` : Status message indicating that the pattern is empty and no word can be generated
 - `Status_WordSentToPatternInput` : Status message indicating that a word is used as the pattern
   - `word` : the word used as the new pattern
-
 - `Status_WordSentToClipboard` : Status message indicating that a word has been copied, sent to the clipboard
   - `word` : the copied word
+- `Status_LanguageChanged` : Status message indicating that language changed
+  - `lang` : the new language name as specified in the language file by the `language_name` key
 
 ## Ressources
 

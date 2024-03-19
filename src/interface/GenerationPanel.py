@@ -1,3 +1,4 @@
+import PyQt6.QtGui as gui
 import PyQt6.QtCore as core
 import PyQt6.QtWidgets as wid
 
@@ -8,6 +9,7 @@ class GenerateButton(wid.QPushButton):
 
     def __init__(self) -> None:
         super().__init__()
+        self.setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor))
         self.reloadTranslation()
 
     def reloadTranslation(self) -> None:
