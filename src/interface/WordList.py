@@ -5,26 +5,16 @@ import logging
 LOGGER = logging.getLogger(__name__)
 
 from interface.WordListItem import WordListItem
+from interface.DefaultScrollArea import DefaultScrollArea
 import control as c
 import rsc
 
-class WordList(wid.QScrollArea):
+class WordList(DefaultScrollArea):
     itemClicked = core.pyqtSignal(object)
     itemIconClicked = core.pyqtSignal(object)
 
     def __init__(self, controller: c.MainController) -> None:
         super().__init__()
-        # Widget properties
-        self.setWidgetResizable(True)
-        self.setVerticalScrollBarPolicy(core.Qt.ScrollBarPolicy.ScrollBarAsNeeded)
-        self.setHorizontalScrollBarPolicy(core.Qt.ScrollBarPolicy.ScrollBarAsNeeded)
-        self.setFrameStyle(wid.QFrame.Shape.NoFrame)
-        self.setStyleSheet(f'background-color: {rsc.Colors.WORD_LIST_BACKGROUND};')
-        # Scrollbar properties
-        self.verticalScrollBar().setStyleSheet(rsc.Styles.SCROLLBAR) # type: ignore
-        self.verticalScrollBar().setCursor(core.Qt.CursorShape.PointingHandCursor) # type: ignore
-        self.horizontalScrollBar().setStyleSheet(rsc.Styles.SCROLLBAR) # type: ignore
-        self.horizontalScrollBar().setCursor(core.Qt.CursorShape.PointingHandCursor) # type: ignore
 
         self.controller = controller
         self.items = set()

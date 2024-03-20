@@ -26,7 +26,7 @@ class Images:
 class Colors:
 
     WHITE = '#ffffff'
-    LIGHT_GRAY = '#cccccc'
+    LIGHT_GRAY = '#a9a9b5'
     GRAY = '#666666'
     DARK_GRAY = '#434952'
 
@@ -48,18 +48,19 @@ class Colors:
     LIST_ITEM_BACKGROUND_HIGHLIGHT = BLUE
     LIST_ITEM_BACKGROUND_HOVER = DARK_BLUE
 
-    WORD_LIST_BACKGROUND = LIST_ITEM_BACKGROUND
-    WORD_LIST_SCROLLBAR_HANDLE = DARK_GRAY
-    WORD_LIST_SCROLLBAR_BACKGROUND = LIGHT_GRAY
+    SCROLLAREA_BACKGROUND = DEFAULT_BACKGROUND
+
+    SCROLLBAR_HANDLE = DARK_GRAY
+    SCROLLBAR_BACKGROUND = LIGHT_GRAY
 
 class Styles:
 
     SCROLLBAR = """
         QScrollBar {
-            background: """ + Colors.WORD_LIST_SCROLLBAR_BACKGROUND + """;
+            background: """ + Colors.SCROLLBAR_BACKGROUND + """;
         }
         QScrollBar::handle {
-            background: """ + Colors.WORD_LIST_SCROLLBAR_HANDLE + """;
+            background: """ + Colors.SCROLLBAR_HANDLE + """;
         }
         QScrollBar::add-line, QScrollBar::sub-line {
             height: 0px;
@@ -127,6 +128,12 @@ class Styles:
         QLineEdit::focus {
             border: 3px solid """ + Colors.INPUT_FOCUS + """;
         }
+    """
+
+    SCROLLAREA = """
+        QScrollArea {
+            background: """ + Colors.SCROLLAREA_BACKGROUND + """;
+        }            
     """
 
     LEFT_PANEL = """

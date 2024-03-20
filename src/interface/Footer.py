@@ -25,7 +25,7 @@ class Footer(wid.QWidget):
 
         self.langsCombo = LangComboBox()
         self.langsCombo.langChanged.connect(self.langChanged)
-        self.langsCombo.arrowClicked.connect(self.comboBoxDroppedDown)
+        self.langsCombo.droppedDown.connect(self.comboBoxDroppedDown)
 
         container = wid.QWidget()
         container.setStyleSheet(f'background-color: {rsc.Colors.HEADER_BACKGROUND};')

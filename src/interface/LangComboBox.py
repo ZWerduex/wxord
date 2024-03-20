@@ -8,7 +8,7 @@ LOGGER = logging.getLogger(__name__)
 import rsc
 
 class LangComboBox(wid.QComboBox):
-    arrowClicked = core.pyqtSignal()
+    droppedDown = core.pyqtSignal()
     langChanged = core.pyqtSignal(object, object)
 
     def __init__(self):
@@ -24,15 +24,9 @@ class LangComboBox(wid.QComboBox):
             lambda _: self.langChanged.emit(self.currentData(), self.currentText())
         )
 
-    def mousePressEvent(self, event: gui.QMouseEvent):
-        super().mousePressEvent(event)
-        opt = wid.QStyleOptionComboBox()
-        self.initStyleOption(opt)
-        sc = self.style().hitTestComplexControl( # type: ignore
-            wid.QStyle.ComplexControl.CC_ComboBox, opt, event.pos(), self
-        ) 
-        if sc == wid.QStyle.SubControl.SC_ComboBoxArrow:
-            self.arrowClicked.emit()
+    def showPopup(self) -> None:
+        super().showPopup()
+        self.droppedDown.emit()
 
     def setLang(self, lang: str) -> None:
         index = self.findData(lang)
