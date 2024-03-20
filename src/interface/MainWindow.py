@@ -12,26 +12,23 @@ import interface as i
 import rsc
 
 class MainWindow(wid.QMainWindow):
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: int, height: int) -> None:
         super().__init__()
         self.controller = c.MainController(self)
 
         # Load fonts
         for file in glob.glob(os.path.join(rsc.Paths.FONTS_DIR, '*.ttf')):
             gui.QFontDatabase.addApplicationFont(file)
-        # Initialize translator
-        rsc.Translator.load()
+            LOGGER.debug(f'Font {os.path.basename(file)} loaded')
 
         self.initWindow(width, height)
         self.buildWidgets()
 
-        # Init the language combo box
-        self.footer.langsCombo.populate(rsc.Translator.langs())
-        self.footer.langsCombo.setLang(rsc.Translator.LANG)
+        self.controller.completeInit()
 
     # WINDOW BAKING
     
-    def initWindow(self, width: int, height: int):
+    def initWindow(self, width: int, height: int) -> None:
         LOGGER.debug(f'Initializing {width}x{height} window')
         self.setWindowTitle(rsc.Strings.APPLICATION_NAME)
         self.setMinimumSize(width, height)
@@ -42,7 +39,7 @@ class MainWindow(wid.QMainWindow):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
-    def buildWidgets(self):
+    def buildWidgets(self) -> None:
         self.header = i.Header()
         self.footer = i.Footer()
         self.footer.langChanged.connect(self.controller.onChangeLang)
@@ -60,7 +57,8 @@ class MainWindow(wid.QMainWindow):
         self.charsetsPanel = i.CharsetsPanel()
 
         leftPanel = wid.QWidget()
-        leftPanel.setStyleSheet(rsc.Styles.LEFT_PANEL)
+        leftPanel.setStyleSheet(f"background: {rsc.Colors.DEFAULT_BACKGROUND};")
+        leftPanel.setMinimumWidth(400)
 
         leftLayout = wid.QVBoxLayout()
         leftLayout.setSpacing(rsc.Margins.BASE)

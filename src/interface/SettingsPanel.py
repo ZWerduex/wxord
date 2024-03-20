@@ -14,6 +14,7 @@ class SettingWidgetLabel(wid.QLabel):
 
     def __init__(self, translationKey: str):
         super().__init__(rsc.Translator.tr(translationKey))
+        self.setStyleSheet(f'color: {rsc.Colors.WHITE};')
         self.setFont(rsc.Fonts.SETTING)
 
         self.translationKey = translationKey
@@ -63,7 +64,7 @@ class SettingsPanel(wid.QWidget):
         self.batchSizeInput = SettingWidget('BatchSizeInput_label', 20)
         
         hbox = wid.QHBoxLayout()
-        hbox.setSpacing(rsc.Margins.BASE)
+        hbox.setSpacing(rsc.Margins.BASE * 2)
         hbox.setContentsMargins(0, 0, 0, 0)
         hbox.addStretch(1)
         hbox.addWidget(self.maxLengthInput)

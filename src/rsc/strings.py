@@ -16,12 +16,16 @@ class Paths:
     LANG_DIR = os.path.join(ROOT, 'lang')
 
     LOG_FILE = os.path.join(ROOT, Strings.APPLICATION_NAME.lower() + '.log')
+    CONFIG_FILE = os.path.join(ROOT, 'config.json')
 
 class Images:
 
+    # Paths for QPixmap/QIcon images
     ENTER = os.path.join(Paths.IMG_DIR, 'enter.svg')
     VALID = os.path.join(Paths.IMG_DIR, 'valid.svg')
-    DROP_DOWN = os.path.join(Paths.IMG_DIR, 'drop_down.svg')
+
+    # URLs for stylesheets
+    DROP_DOWN_URL = 'img/drop_down.svg'
 
 class Colors:
 
@@ -100,7 +104,7 @@ class Styles:
             border: 0px;
         }
         QComboBox::down-arrow {
-            image: url(img/drop_down.svg);
+            image: url(""" + Images.DROP_DOWN_URL + """);
             width: 10px;
             height: 10px;
             margin-right: 7px;
@@ -161,12 +165,6 @@ class Styles:
         QScrollArea {
             background: """ + Colors.SCROLLAREA_BACKGROUND + """;
         }            
-    """
-
-    LEFT_PANEL = """
-        QWidget {
-            background: """ + Colors.DEFAULT_BACKGROUND + """;
-        }
     """
 
 class Margins:

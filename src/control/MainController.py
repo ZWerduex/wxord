@@ -18,8 +18,26 @@ import rsc
 class MainController:
     def __init__(self, window: i.MainWindow):
         self.window = window
-
         self.itemSentToPattern = None
+
+        rsc.Translator.load()
+
+    def completeInit(self) -> None:
+        # Init the language combo box
+        self.window.footer.langsCombo.populate(rsc.Translator.langs())
+        # Read config file to set the last used language
+        if os.path.exists(rsc.Paths.CONFIG_FILE):
+            with open(rsc.Paths.CONFIG_FILE, 'r', encoding = 'utf-8') as f:
+                data = json.load(f)
+                if 'lang' in data:
+                    try:
+                        rsc.Translator.setLang(data['lang'])
+                        LOGGER.info(f"Last used language : '{data['lang']}'")
+                        self.window.reloadTranslations()
+                    except ValueError as e:
+                        LOGGER.error(f"{e} : {data['lang']} is missing in translations files")
+        # Update the language combo box
+        self.window.footer.langsCombo.setLang(rsc.Translator.LANG)
 
     @property
     def charsets(self) -> dict[str, dict]:
@@ -62,8 +80,13 @@ class MainController:
 
     def onChangeLang(self, lang: str, name: str) -> None:
         LOGGER.debug(f"Changing language to '{lang}' ({name})")
+        # Set the new language
         rsc.Translator.setLang(lang)
+        # Reload translations
         self.window.reloadTranslations()
+        # Update the last used language
+        with open(rsc.Paths.CONFIG_FILE, 'w', encoding = 'utf-8') as f:
+            json.dump({'lang': lang}, f)
 
     def onScanTranslationsFiles(self) -> None:
         LOGGER.debug('Scanning translations files')
