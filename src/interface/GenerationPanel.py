@@ -10,6 +10,9 @@ class GenerateButton(wid.QPushButton):
     def __init__(self) -> None:
         super().__init__()
         self.setCursor(gui.QCursor(core.Qt.CursorShape.PointingHandCursor))
+        self.setStyleSheet(rsc.Styles.GENERATE_BUTTON)
+        self.setFont(rsc.Fonts.BOLD)
+
         self.reloadTranslation()
 
     def reloadTranslation(self) -> None:

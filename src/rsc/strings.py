@@ -35,6 +35,10 @@ class Colors:
     DARK_BLUE = '#225a71'
     BLUE = '#3a93b7'
 
+    LIGHT_GREEN = '#1da73b'
+    GREEN = '#1a7f2c'
+    DARK_GREEN = '#0f5b1f'
+
     DEFAULT_BACKGROUND = METAL_BLUE
     DEFAULT_FONT = WHITE
 
@@ -43,6 +47,10 @@ class Colors:
     INPUT_BACKGROUND = DARK_GRAY
     INPUT_FOCUS = BLUE
     INPUT_HIGHLIGHT = DARK_BLUE
+
+    GENERATE_BUTTON_BACKGROUND = DARK_GREEN
+    GENERATE_BUTTON_HIGHLIGHT = GREEN
+    GENERATE_BUTTON_FOCUS = LIGHT_GREEN
 
     LIST_ITEM_BACKGROUND = DEFAULT_BACKGROUND
     LIST_ITEM_BACKGROUND_HIGHLIGHT = BLUE
@@ -108,7 +116,26 @@ class Styles:
         QComboBox QAbstractItemView::item:hover, QComboBox QAbstractItemView::item:focus {
             background: """ + Colors.LIST_ITEM_BACKGROUND_HIGHLIGHT + """;
         }
-            
+    """
+
+    GENERATE_BUTTON = """
+        QPushButton {
+            background: """ + Colors.GENERATE_BUTTON_BACKGROUND + """;
+            border-radius: 16px;
+            padding: 6px;
+
+            color: """ + Colors.DEFAULT_FONT + """;
+            letter-spacing: 1px;
+        }
+        QPushButton::hover {
+            border: 3px solid """ + Colors.GENERATE_BUTTON_HIGHLIGHT + """;
+        }
+        QPushButton::focus {
+            border: 3px solid """ + Colors.GENERATE_BUTTON_FOCUS + """;
+        }
+        QPushButton::pressed {
+            background: """ + Colors.GENERATE_BUTTON_FOCUS + """;
+        }
     """
 
     PATTERN_INPUT = """
