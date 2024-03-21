@@ -26,6 +26,7 @@ class Images:
 
     # URLs for stylesheets
     DROP_DOWN_URL = 'img/drop_down.svg'
+    PUSH_UP_URL = 'img/push_up.svg'
 
 class Colors:
 
@@ -119,6 +120,36 @@ class Styles:
         }
         QComboBox QAbstractItemView::item:hover, QComboBox QAbstractItemView::item:focus {
             background: """ + Colors.LIST_ITEM_BACKGROUND_HIGHLIGHT + """;
+        }
+    """
+
+    SPINBOX = """
+        QSpinBox {
+            background: """ + Colors.INPUT_BACKGROUND + """;
+            border: 2px solid """ + Colors.INPUT_BACKGROUND + """;
+            border-radius: 6px;
+
+            color: """ + Colors.DEFAULT_FONT + """;
+            selection-background-color: """ + Colors.INPUT_FOCUS + """;
+        }
+        QSpinBox::hover {
+            border: 2px solid """ + Colors.INPUT_HIGHLIGHT + """;
+        }
+        QSpinBox::focus {
+            border: 2px solid """ + Colors.INPUT_FOCUS + """;
+        }
+        QSpinBox::up-button, QSpinBox::down-button {
+            border: 0px;
+        }
+        QSpinBox::up-arrow {
+            image: url(""" + Images.PUSH_UP_URL + """);
+            width: 8px;
+            height: 8px;
+        }
+        QSpinBox::down-arrow {
+            image: url(""" + Images.DROP_DOWN_URL + """);
+            width: 8px;
+            height: 8px;
         }
     """
 

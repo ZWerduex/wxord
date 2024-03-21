@@ -18,10 +18,10 @@ class Translator:
         default = f'[{cls.LANG}] {key}'
 
         if cls.LANG not in cls.DATA.keys():
-            LOGGER.warning(f"Language '{cls.LANG}' not found")
+            LOGGER.error(f"Language '{cls.LANG}' not found")
             return default
         if key not in cls.DATA[cls.LANG].keys():
-            LOGGER.warning(f"Key '{key}' not found in language '{cls.LANG}'")
+            LOGGER.error(f"Key '{key}' not found in language '{cls.LANG}'")
             return default
         
         return cls.DATA[cls.LANG][key]
@@ -30,7 +30,9 @@ class Translator:
     def langs(cls) -> dict[str, str]:
         langs = dict()
         for lang in cls.DATA.keys():
-            langs[lang] = cls.DATA[lang]['language_name']
+            if 'language_name' not in cls.DATA[lang].keys():
+                LOGGER.error(f"Key 'language_name' not found in language '{lang}'")
+            langs[lang] = cls.DATA[lang].get('language_name', f'[{lang}] language_name')
         return langs
     
     @classmethod

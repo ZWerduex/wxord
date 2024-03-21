@@ -30,14 +30,18 @@ class SettingWidget(wid.QWidget):
         super().__init__()
 
         self.input = wid.QSpinBox()
+        self.input.setStyleSheet(rsc.Styles.SPINBOX)
         self.input.setFont(rsc.Fonts.SETTING)
+
         self.input.setFixedWidth(self.fontMetrics().horizontalAdvance(str(MAXIMUM_INPUT)) + 30)
         self.input.setMinimum(1)
         self.input.setMaximum(MAXIMUM_INPUT)
+
         if baseValue > 0:
             self.input.setValue(baseValue)
         else:
             LOGGER.warning(f"Base value for setting '{translationKey}' is not greater than 0")
+            self.input.setValue(1)
 
         self.label = SettingWidgetLabel(translationKey)
         self.label.clicked.connect(self.input.setFocus)
