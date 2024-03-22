@@ -14,6 +14,7 @@ I have created this application because I'm interested in the concept of creatin
 - Three weighted sets of characters (non configurable via the UI at the moment)
 - Use a generated word as a pattern
 - Copy to clipboard a generated word
+- Language selection (English and French currently available)
 
 ### Planned features
 
@@ -23,6 +24,7 @@ I have created this application because I'm interested in the concept of creatin
 - Export saved words to a file
 - A sort of "tutorial" to learn how to use Wxord
 - Add a minimum length for generated words, and I don't know how to achieve this yet :(
+- Create translations directly from the application
 
 Actually, you can change the charset used by tweaking directly the JSON file in the `charsets` folder. More information about this in the [documentation](doc/doc.md).
 

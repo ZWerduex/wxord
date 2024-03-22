@@ -68,22 +68,6 @@ class Colors:
 
 class Styles:
 
-    SCROLLBAR = """
-        QScrollBar {
-            background: """ + Colors.SCROLLBAR_BACKGROUND + """;
-        }
-        QScrollBar::handle {
-            background: """ + Colors.SCROLLBAR_HANDLE + """;
-        }
-        QScrollBar::add-line, QScrollBar::sub-line {
-            height: 0px;
-            background: none;
-        }
-        QScrollBar::add-page, QScrollBar::sub-page {
-            background: none;
-        }
-    """
-
     COMBO_BOX = """
         QComboBox {
             background: """ + Colors.INPUT_BACKGROUND + """;
@@ -189,6 +173,25 @@ class Styles:
         }
         QLineEdit::focus {
             border: 3px solid """ + Colors.INPUT_FOCUS + """;
+        }
+    """
+
+    SCROLLBAR = """
+        QScrollBar {
+            background: """ + Colors.SCROLLBAR_BACKGROUND + """;
+            width: 12px;
+            border-radius: 3px;
+        }
+        QScrollBar::handle {
+            background: """ + Colors.SCROLLBAR_HANDLE + """;
+            border-radius: 3px;
+        }
+        QScrollBar::add-line, QScrollBar::sub-line {
+            height: 0px;
+            background: none;
+        }
+        QScrollBar::add-page, QScrollBar::sub-page {
+            background: none;
         }
     """
 
