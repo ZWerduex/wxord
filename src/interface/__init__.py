@@ -1,3 +1,4 @@
+from interface.CharsetList import CharsetList
 from interface.CharsetsPanel import CharsetsPanel
 from interface.Footer import Footer
 from interface.GenerationPanel import GenerationPanel

@@ -8,6 +8,8 @@
     "BatchSizeInput_label": "Nombre de mots",
     "GenerateButton_text": "Générer",
 
+    "SuggestedPatterns_placeholder": "Sélectionnez un motif",
+
     "Status": "Statut",
     "Status_GeneratedWord": "{nb} mot généré",
     "Status_GeneratedWords": "{nb} mots générés",

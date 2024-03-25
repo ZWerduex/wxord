@@ -180,7 +180,7 @@ class Styles:
         QScrollBar {
             background: """ + Colors.SCROLLBAR_BACKGROUND + """;
             width: 12px;
-            border-radius: 3px;
+            border-radius: 4px;
         }
         QScrollBar::handle {
             background: """ + Colors.SCROLLBAR_HANDLE + """;
@@ -204,6 +204,7 @@ class Styles:
 class Margins:
 
     BASE = 10
+    CHARSETLIST = 5
     WORDLIST = 5
 
 class Fonts:

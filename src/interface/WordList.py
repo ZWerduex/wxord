@@ -13,10 +13,9 @@ class WordList(DefaultScrollArea):
     itemClicked = core.pyqtSignal(object)
     itemIconClicked = core.pyqtSignal(object)
 
-    def __init__(self, controller: c.MainController) -> None:
+    def __init__(self) -> None:
         super().__init__()
-
-        self.controller = controller
+        
         self.items = set()
 
         self.grid = wid.QGridLayout()

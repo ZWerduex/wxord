@@ -45,7 +45,7 @@ class MainWindow(wid.QMainWindow):
         self.footer.langChanged.connect(self.controller.onChangeLang)
         self.footer.comboBoxDroppedDown.connect(self.controller.onScanTranslationsFiles)
 
-        self.wordList = i.WordList(self.controller)
+        self.wordList = i.WordList()
         self.wordList.itemClicked.connect(self.controller.onSendToClipboard)
         self.wordList.itemIconClicked.connect(self.controller.onSendToPatternInput)
         
@@ -91,6 +91,7 @@ class MainWindow(wid.QMainWindow):
         self.header.reloadTranslation()
         self.footer.reloadTranslation()
         self.generationPanel.reloadTranslation()
+        self.charsetsPanel.reloadTranslation()
     
     def setPattern(self, pattern: str) -> None:
         self.generationPanel.setPattern(pattern)

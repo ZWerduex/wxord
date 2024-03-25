@@ -8,6 +8,8 @@
     "BatchSizeInput_label": "Batch size",
     "GenerateButton_text": "Generate",
 
+    "SuggestedPatterns_placeholder": "Select a pattern",
+
     "Status": "Status",
     "Status_GeneratedWord": "Generated {nb} word",
     "Status_GeneratedWords": "Generated {nb} words",

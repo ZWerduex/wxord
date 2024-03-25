@@ -25,6 +25,7 @@ class MainController:
     def completeInit(self) -> None:
         # Init the language combo box
         self.window.footer.langsCombo.populate(rsc.Translator.langs())
+        # TEMP
         # Read config file to set the last used language
         if os.path.exists(rsc.Paths.CONFIG_FILE):
             with open(rsc.Paths.CONFIG_FILE, 'r', encoding = 'utf-8') as f:
@@ -38,7 +39,13 @@ class MainController:
                         LOGGER.error(f"{e} : {data['lang']} is missing in translations files")
         # Update the language combo box
         self.window.footer.langsCombo.setLang(rsc.Translator.LANG)
+        self.window.footer.clearStatus()
 
+        # TEMP
+        cs = self.charsets['basic_french']
+        self.window.charsetsPanel.update(cs['name'], cs['desc'], cs['suggested'], cs['charsets'])
+
+    # TEMP
     @property
     def charsets(self) -> dict[str, dict]:
         ext = 'json'
