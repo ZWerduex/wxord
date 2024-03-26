@@ -25,21 +25,14 @@ class MainController:
     def completeInit(self) -> None:
         # Init the language combo box
         self.window.footer.langsCombo.populate(rsc.Translator.langs())
-        # TEMP
-        # Read config file to set the last used language
-        if os.path.exists(rsc.Paths.CONFIG_FILE):
-            with open(rsc.Paths.CONFIG_FILE, 'r', encoding = 'utf-8') as f:
-                data = json.load(f)
-                if 'lang' in data:
-                    try:
-                        rsc.Translator.setLang(data['lang'])
-                        LOGGER.info(f"Last used language : '{data['lang']}'")
-                        self.window.reloadTranslations()
-                    except ValueError as e:
-                        LOGGER.error(f"{e} : {data['lang']} is missing in translations files")
-        # Update the language combo box
-        self.window.footer.langsCombo.setLang(rsc.Translator.LANG)
-        self.window.footer.clearStatus()
+        
+        self.config = rsc.Configuration()
+        if self.config.lang is not None:
+            rsc.Translator.setLang(self.config.lang)
+
+            # Update the language combo box
+            self.window.footer.langsCombo.setLang(rsc.Translator.LANG)
+            self.window.footer.clearStatus()
 
         # TEMP
         cs = self.charsets['basic_french']
@@ -80,7 +73,12 @@ class MainController:
             rsc.Translator.tr('Status_WordSentToPatternInput').format(word = item.word)
         )
 
+    def onSelectSuggestedPattern(self, pattern: str) -> None:
+        LOGGER.debug(f"Selecting suggested pattern '{pattern}'")
+        self.window.setPattern(pattern)
+
     def onPatternEdited(self, pattern: str) -> None:
+        self.window.charsetsPanel.unselectPattern()
         if self.itemSentToPattern is not None:
             self.itemSentToPattern.icon.unvalidate()
             self.itemSentToPattern = None

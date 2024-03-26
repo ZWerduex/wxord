@@ -104,6 +104,8 @@ In the next subsection, documentation indicates a list of required parameters fo
 
 #### Charsets panel
 - `SuggestedPatterns_placeholder` : Placeholder of the combobox used to choose a suggested pattern
+- `OrderByCharButton_text` : Text of the button used to order a charset in alphabetical order
+- `OrderByWeightButton_text` : Text of the button used to order a charset by weight
 
 #### Footer section
 - `Status` : Used as the title for the status bar in the footer

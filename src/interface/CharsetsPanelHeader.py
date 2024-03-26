@@ -11,10 +11,11 @@ class CharsetsPanelHeader(wid.QWidget):
 
         self.name = wid.QLabel(name)
         self.desc = wid.QLabel(desc)
+        self.desc.setWordWrap(True)
 
         self.suggestedCombo = wid.QComboBox()
         self.suggestedCombo.addItems(suggested)
-        self.suggestedCombo.currentTextChanged.connect(self.patternSelected.emit)
+        self.suggestedCombo.activated.connect(self.patternSelected.emit)
 
         left = wid.QVBoxLayout()
         left.setSpacing(0)
@@ -30,7 +31,7 @@ class CharsetsPanelHeader(wid.QWidget):
         layout = wid.QHBoxLayout()
         layout.setSpacing(0)
         layout.setContentsMargins(0, 0, 0, 0)
-        layout.addLayout(left)
+        layout.addLayout(left, 1)
         layout.addLayout(right)
         self.setLayout(layout)
 

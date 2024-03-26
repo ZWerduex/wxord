@@ -55,6 +55,7 @@ class MainWindow(wid.QMainWindow):
         self.generationPanel.patternEdited.connect(self.controller.onPatternEdited)
 
         self.charsetsPanel = i.CharsetsPanel()
+        self.charsetsPanel.patternSelected.connect(self.controller.onSelectSuggestedPattern)
 
         leftPanel = wid.QWidget()
         leftPanel.setStyleSheet(f"background: {rsc.Colors.DEFAULT_BACKGROUND};")

@@ -9,6 +9,8 @@
     "GenerateButton_text": "Generate",
 
     "SuggestedPatterns_placeholder": "Select a pattern",
+    "OrderByCharButton_text": "Order by char",
+    "OrderByWeightButton_text": "Order by weight",
 
     "Status": "Status",
     "Status_GeneratedWord": "Generated {nb} word",

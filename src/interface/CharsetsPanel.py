@@ -6,6 +6,7 @@ import interface as i
 import rsc
 
 class CharsetsPanel(wid.QWidget):
+    patternSelected = core.pyqtSignal(object)
 
     def __init__(self,
             name: str = '',
@@ -23,7 +24,8 @@ class CharsetsPanel(wid.QWidget):
         if len(charsets) > 3:
             charsets = charsets[:3]
 
-        self.title = CharsetsPanelHeader(name, desc, suggested)
+        self.header = CharsetsPanelHeader(name, desc, suggested)
+        self.header.patternSelected.connect(self._patternSelected)
 
         self.charsetLists = list()
         listsLayout = wid.QHBoxLayout()
@@ -38,7 +40,7 @@ class CharsetsPanel(wid.QWidget):
         main = wid.QVBoxLayout()
         main.setSpacing(0)
         main.setContentsMargins(0, 0, 0, 0)
-        main.addWidget(self.title)
+        main.addWidget(self.header)
         main.addLayout(listsLayout)
         self.setLayout(main)
 
@@ -53,15 +55,22 @@ class CharsetsPanel(wid.QWidget):
         suggested = suggested if suggested else list()
         charsets = charsets if charsets else list()
 
-        self.title.update(name, desc, suggested)
+        self.header.update(name, desc, suggested)
         for i, charset in enumerate(charsets):
             self.charsetLists[i].populate(charset)
+
+    def _patternSelected(self, index: int) -> None:
+        pattern = self.header.suggestedCombo.itemText(index)
+        self.patternSelected.emit(pattern)
+
+    def unselectPattern(self) -> None:
+        self.header.suggestedCombo.setCurrentIndex(-1)
 
     @property
     def charsets(self) -> list[dict[str, int]]:
         return [charset.charset for charset in self.charsetLists]
 
     def reloadTranslation(self) -> None:
-        self.title.reloadTranslation()
+        self.header.reloadTranslation()
         for charset in self.charsetLists:
             charset.reloadTranslation()

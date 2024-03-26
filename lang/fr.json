@@ -9,6 +9,8 @@
     "GenerateButton_text": "Générer",
 
     "SuggestedPatterns_placeholder": "Sélectionnez un motif",
+    "OrderByCharButton_text": "Trier par caractère",
+    "OrderByWeightButton_text": "Trier par poids",
 
     "Status": "Statut",
     "Status_GeneratedWord": "{nb} mot généré",
