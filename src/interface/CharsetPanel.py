@@ -5,7 +5,7 @@ from interface.CharsetsPanelHeader import CharsetsPanelHeader
 import interface as i
 import rsc
 
-class CharsetsPanel(wid.QWidget):
+class CharsetPanel(wid.QWidget):
     patternSelected = core.pyqtSignal(object)
 
     def __init__(self,
@@ -18,7 +18,7 @@ class CharsetsPanel(wid.QWidget):
         suggested = suggested if suggested else list()
         charsets = charsets if charsets else list()
 
-        # Hardcoded-limit to 3 charsets per panel
+        # HARDCODE : limit to 3 charsets per panel
         while len(charsets) < 3:
             charsets.append(dict())
         if len(charsets) > 3:
@@ -72,5 +72,3 @@ class CharsetsPanel(wid.QWidget):
 
     def reloadTranslation(self) -> None:
         self.header.reloadTranslation()
-        for charset in self.charsetLists:
-            charset.reloadTranslation()

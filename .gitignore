@@ -2,3 +2,4 @@
 *.log
 .antlr
 config.json
+script.js

@@ -1,4 +1,4 @@
-# Generated from Pattern.g4 by ANTLR 4.13.1
+# Generated from ../Pattern.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .PatternParser import PatternParser
@@ -11,7 +11,7 @@ from grammar.CharSet import CharSet
 
 # This class defines a complete generic visitor for a parse tree produced by PatternParser.
 
-class PatternVisitor(ParseTreeVisitor):
+class PatternGeneratorVisitor(ParseTreeVisitor):
 
     def __init__(self, maxLength: int, charsets: list[CharSet]) -> None:
         super().__init__()
@@ -29,6 +29,12 @@ class PatternVisitor(ParseTreeVisitor):
             self.remainingLength -= len(word)
             acc += word
         return acc
+
+
+    # Visit a parse tree produced by PatternParser#other.
+    def visitOther(self, ctx:PatternParser.OtherContext):
+        return ctx.getText()
+
 
     # Visit a parse tree produced by PatternParser#quantified.
     def visitQuantified(self, ctx:PatternParser.QuantifiedContext):
@@ -58,11 +64,15 @@ class PatternVisitor(ParseTreeVisitor):
         self.remainingLength -= len(word)
         return word + acc
 
+
     # Visit a parse tree produced by PatternParser#parenthesized.
     def visitParenthesized(self, ctx:PatternParser.ParenthesizedContext):
-        expr = self.visit(ctx.children[1])
-        self.remainingLength -= len(expr)
-        return expr
+        acc = ''
+        for expr in ctx.children[1:-1]: # Skip parentheses
+            acc += self.visit(expr)
+        self.remainingLength -= len(acc)
+        return acc
+
 
     # Visit a parse tree produced by PatternParser#operation.
     def visitOperation(self, ctx:PatternParser.OperationContext):
@@ -78,9 +88,10 @@ class PatternVisitor(ParseTreeVisitor):
             return right
         
         raise NotImplementedError(f'Unknown operation: {op.getText()}')
-        
-    # Visit a parse tree produced by PatternParser#atom.
-    def visitAtom(self, ctx:PatternParser.AtomContext):
+
+
+    # Visit a parse tree produced by PatternParser#digit.
+    def visitDigit(self, ctx:PatternParser.DigitContext):
         atom = ctx.getText()
         word = ''
         for char in atom:
@@ -95,5 +106,7 @@ class PatternVisitor(ParseTreeVisitor):
                 word += char
         self.remainingLength -= len(word)
         return word
+
+
 
 del PatternParser

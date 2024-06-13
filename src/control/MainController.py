@@ -36,7 +36,7 @@ class MainController:
 
         # TEMP
         cs = self.charsets['basic_french']
-        self.window.charsetsPanel.update(cs['name'], cs['desc'], cs['suggested'], cs['charsets'])
+        self.window.charsetPanel.update(cs['name'], cs['desc'], cs['suggested'], cs['charsets'])
 
     # TEMP
     @property
@@ -78,7 +78,7 @@ class MainController:
         self.window.setPattern(pattern)
 
     def onPatternEdited(self, pattern: str) -> None:
-        self.window.charsetsPanel.unselectPattern()
+        self.window.charsetPanel.unselectPattern()
         if self.itemSentToPattern is not None:
             self.itemSentToPattern.icon.unvalidate()
             self.itemSentToPattern = None
@@ -114,8 +114,8 @@ class MainController:
             self.window.footer.setStatus(rsc.Translator.tr('Status_PatternIsEmptyNoWordGenerated'))
             return
         
-        generated = sorted(g.Generator(tmp).generateMany(
-            pattern, maxLength, batchSize
+        generated = sorted(g.Generator(tmp).generate(
+            pattern, 10, maxLength, batchSize
         ))
         self.window.wordList.empty()
 

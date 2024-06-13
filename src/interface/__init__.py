@@ -1,5 +1,5 @@
 from interface.CharsetList import CharsetList
-from interface.CharsetsPanel import CharsetsPanel
+from interface.CharsetPanel import CharsetPanel
 from interface.Footer import Footer
 from interface.GenerationPanel import GenerationPanel
 from interface.Header import Header

@@ -54,8 +54,8 @@ class MainWindow(wid.QMainWindow):
         self.generationPanel.generated.connect(self.controller.onGenerate)
         self.generationPanel.patternEdited.connect(self.controller.onPatternEdited)
 
-        self.charsetsPanel = i.CharsetsPanel()
-        self.charsetsPanel.patternSelected.connect(self.controller.onSelectSuggestedPattern)
+        self.charsetPanel = i.CharsetPanel()
+        self.charsetPanel.patternSelected.connect(self.controller.onSelectSuggestedPattern)
 
         leftPanel = wid.QWidget()
         leftPanel.setStyleSheet(f"background: {rsc.Colors.DEFAULT_BACKGROUND};")
@@ -72,7 +72,7 @@ class MainWindow(wid.QMainWindow):
         main.setSpacing(0)
         main.setContentsMargins(0, 0, 0, 0)
         main.addWidget(leftPanel)
-        main.addWidget(self.charsetsPanel, 1)
+        main.addWidget(self.charsetPanel, 1)
 
         vbox = wid.QVBoxLayout()
         vbox.setSpacing(0)
@@ -92,7 +92,7 @@ class MainWindow(wid.QMainWindow):
         self.header.reloadTranslation()
         self.footer.reloadTranslation()
         self.generationPanel.reloadTranslation()
-        self.charsetsPanel.reloadTranslation()
+        self.charsetPanel.reloadTranslation()
     
     def setPattern(self, pattern: str) -> None:
         self.generationPanel.setPattern(pattern)
