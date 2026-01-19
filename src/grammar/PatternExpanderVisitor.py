@@ -76,7 +76,7 @@ class PatternExpanderVisitor(ParseTreeVisitor):
                     self.additionalPatterns -= 1
                     return left.getText() if random.randint(0, 1) == 0 else right.getText()
             
-            return self.visit(left) if random.randint(0, 1) == 0 else self.visit(right)
+            return self.visit(left) + '|' + self.visit(right)
         
         raise NotImplementedError("Only '|' operation is supported")
 
